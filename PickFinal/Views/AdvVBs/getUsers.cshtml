@@ -1,0 +1,14 @@
+﻿    @{
+        var members = (MembershipUserCollection)ViewData.Model
+        ViewBag.Title = "getUsers";
+    }
+
+    <h2>getUsers</h2>
+
+    <ul>
+        <%foreach (MembershipUser user in members){ %>
+
+        <li><%=user.UserName %></li>
+
+        <% }%>
+    </ul>
