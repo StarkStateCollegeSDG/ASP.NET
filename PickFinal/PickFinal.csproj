@@ -223,6 +223,24 @@
       <DependentUpon>FinalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdvVB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdvVB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdvVB.cs">
+      <DependentUpon>AdvVB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdvVB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdvVB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdvVB1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdvVB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -514,6 +532,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\AdvVB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AdvVB.edmx</DependentUpon>
+      <LastGenOutput>AdvVB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\AdvVB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AdvVB.edmx</DependentUpon>
+      <LastGenOutput>AdvVB1.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="FinalModel.edmx">
@@ -646,6 +674,13 @@
     <Content Include="bin\roslyn\vbc.exe.config" />
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <EntityDeploy Include="Models\AdvVB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AdvVB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\AdvVB.edmx.diagram">
+      <DependentUpon>AdvVB.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
