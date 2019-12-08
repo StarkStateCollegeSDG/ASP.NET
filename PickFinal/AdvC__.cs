@@ -12,7 +12,7 @@ namespace PickFinal
     using System;
     using System.Collections.Generic;
     
-    public partial class AdvVB
+    public partial class AdvC__
     {
         public int Id { get; set; }
         public string projectname { get; set; }

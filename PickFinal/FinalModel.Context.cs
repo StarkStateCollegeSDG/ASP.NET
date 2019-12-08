@@ -33,5 +33,6 @@ namespace PickFinal
         public virtual DbSet<aspnet_SchemaVersions> aspnet_SchemaVersions { get; set; }
         public virtual DbSet<aspnet_Users> aspnet_Users { get; set; }
         public virtual DbSet<login> logins { get; set; }
+        public virtual DbSet<AdvC__> AdvC__ { get; set; }
     }
 }

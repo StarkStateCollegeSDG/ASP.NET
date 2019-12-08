@@ -170,6 +170,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvC__.cs">
+      <DependentUpon>FinalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AdvVB.cs">
       <DependentUpon>FinalModel.tt</DependentUpon>
     </Compile>
@@ -506,6 +509,7 @@
       <DependentUpon>FinalModel.edmx</DependentUpon>
       <LastGenOutput>FinalModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="FinalModel.edmx.sql" />
     <Content Include="FinalModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FinalModel.edmx</DependentUpon>

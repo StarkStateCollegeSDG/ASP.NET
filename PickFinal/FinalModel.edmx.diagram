@@ -19,6 +19,7 @@
         <AssociationConnector Association="DB_A10D74_smoroskoModel.FK__aspnet_Me__UserI__76969D2E" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A10D74_smoroskoModel.FK__aspnet_Pr__UserI__160F4887" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A10D74_smoroskoModel.aspnet_UsersInRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_A10D74_smoroskoModel.AdvC__" Width="1.5" PointX="8.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
