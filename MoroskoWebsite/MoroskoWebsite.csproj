@@ -65,6 +65,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -169,22 +171,41 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdvCPPsController.cs" />
+    <Compile Include="Controllers\AdvVBsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdvCPP.cs">
+      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdvVB.cs">
+      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\StarkStateEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StarkStateEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StarkStateEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StarkStateEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StarkStateEntity.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\dbFinals.mdf" />
-    <Content Include="App_Data\dbFinals_log.ldf">
-      <DependentUpon>dbFinals.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\StarkState.mdf" />
     <Content Include="App_Data\StarkState_log.ldf">
       <DependentUpon>StarkState.mdf</DependentUpon>
@@ -197,8 +218,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\StarkStateEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StarkStateEntity.edmx</DependentUpon>
+      <LastGenOutput>StarkStateEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\StarkStateEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StarkStateEntity.edmx</DependentUpon>
+      <LastGenOutput>StarkStateEntity.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\StarkStateEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>StarkStateEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\StarkStateEntity.edmx.diagram">
+      <DependentUpon>StarkStateEntity.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -244,8 +282,20 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\AdvCPPs\Create.cshtml" />
+    <Content Include="Views\AdvCPPs\Delete.cshtml" />
+    <Content Include="Views\AdvCPPs\Details.cshtml" />
+    <Content Include="Views\AdvCPPs\Edit.cshtml" />
+    <Content Include="Views\AdvCPPs\Index.cshtml" />
+    <Content Include="Views\AdvVBs\Create.cshtml" />
+    <Content Include="Views\AdvVBs\Delete.cshtml" />
+    <Content Include="Views\AdvVBs\Details.cshtml" />
+    <Content Include="Views\AdvVBs\Edit.cshtml" />
+    <Content Include="Views\AdvVBs\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
