@@ -17,7 +17,7 @@ namespace MoroskoWebsite.Models
         public int Id { get; set; }
         public string finalname { get; set; }
         public string finalgrade { get; set; }
-        //Foreign key linked to the Id in the course table.
+        //SK: Foreign key linked to the Id in the course table.
         public int courseId { get; set; }
     
         public virtual Course Course { get; set; }

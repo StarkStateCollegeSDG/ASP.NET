@@ -23,7 +23,9 @@ namespace MoroskoWebsite.Models
         public int Id { get; set; }
         public string coursename { get; set; }
         public string coursegrade { get; set; }
-    
+        //SK: This is here because of the foreign key contraint we have in the finals table.
+        //SK: This is a navigation property which holds other enitties related to this entity.
+        //SK: The navigation property will hold all the final entities related to this course.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Final> Finals { get; set; }
     }
