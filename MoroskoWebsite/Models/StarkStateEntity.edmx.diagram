@@ -7,6 +7,9 @@
       <Diagram DiagramId="fb810caeec07438394e243b08c139ab3" Name="Diagram1">
         <EntityTypeShape EntityType="StarkStateModel.AdvVB" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="StarkStateModel.AdvCPP" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StarkStateModel.Course" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="StarkStateModel.Final" Width="1.5" PointX="3" PointY="3.875" />
+        <AssociationConnector Association="StarkStateModel.FK_courseId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

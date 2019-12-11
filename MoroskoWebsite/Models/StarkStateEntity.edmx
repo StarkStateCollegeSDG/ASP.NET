@@ -4,9 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StarkStateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\GIT\ASP.NET\MOROSKOWEBSITE\APP_DATA\STARKSTATE.MDF.dbo.AdvCPP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+    <Schema Namespace="StarkStateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdvCPP">
           <Key>
             <PropertyRef Name="Id" />
@@ -25,19 +23,56 @@ warning 6002: The table/view 'C:\GIT\ASP.NET\MOROSKOWEBSITE\APP_DATA\STARKSTATE.
           <Property Name="description" Type="varchar(max)" />
           <Property Name="studentname" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="coursename" Type="varchar" MaxLength="100" />
+          <Property Name="coursegrade" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\GIT\ASP.NET\MOROSKOWEBSITE\APP_DATA\STARKSTATE.MDF.dbo.Final' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Final">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="courseId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="finalname" Type="varchar" MaxLength="100" />
+          <Property Name="finalgrade" Type="varchar" MaxLength="10" />
+          <Property Name="courseId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_courseId">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Final" Type="Self.Final" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Final">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="StarkStateModelStoreContainer">
+          <EntitySet Name="AdvCPP" EntityType="Self.AdvCPP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdvVBs" EntityType="Self.AdvVBs" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AdvCPP" EntityType="Self.AdvCPP" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Final" EntityType="Self.Final" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [AdvCPP].[Id] AS [Id], 
-    [AdvCPP].[projectname] AS [projectname], 
-    [AdvCPP].[description] AS [description], 
-    [AdvCPP].[studentname] AS [studentname]
-    FROM [dbo].[AdvCPP] AS [AdvCPP]</DefiningQuery>
+    [Final].[Id] AS [Id], 
+    [Final].[finalname] AS [finalname], 
+    [Final].[finalgrade] AS [finalgrade], 
+    [Final].[courseId] AS [courseId]
+    FROM [dbo].[Final] AS [Final]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_courseId" Association="Self.FK_courseId">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Final" EntitySet="Final" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StarkStateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -62,7 +97,45 @@ warning 6002: The table/view 'C:\GIT\ASP.NET\MOROSKOWEBSITE\APP_DATA\STARKSTATE.
         <EntityContainer Name="StarkStateEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AdvVBs" EntityType="Self.AdvVB" />
           <EntitySet Name="AdvCPPs" EntityType="Self.AdvCPP" />
+          <EntitySet Name="Courses" EntityType="StarkStateModel.Course" />
+          <EntitySet Name="Finals" EntityType="StarkStateModel.Final" />
+          <AssociationSet Name="FK_courseId" Association="StarkStateModel.FK_courseId">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Final" EntitySet="Finals" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="coursegrade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Finals" Relationship="StarkStateModel.FK_courseId" FromRole="Course" ToRole="Final" />
+        </EntityType>
+        <EntityType Name="Final">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="courseId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="finalname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="finalgrade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="courseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="StarkStateModel.FK_courseId" FromRole="Final" ToRole="Course" />
+        </EntityType>
+        <Association Name="FK_courseId">
+          <End Type="StarkStateModel.Course" Role="Course" Multiplicity="1" />
+          <End Type="StarkStateModel.Final" Role="Final" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Final">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -86,6 +159,25 @@ warning 6002: The table/view 'C:\GIT\ASP.NET\MOROSKOWEBSITE\APP_DATA\STARKSTATE.
                 <ScalarProperty Name="projectname" ColumnName="projectname" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="studentname" ColumnName="studentname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="StarkStateModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="coursegrade" ColumnName="coursegrade" />
+                <ScalarProperty Name="coursename" ColumnName="coursename" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Finals">
+            <EntityTypeMapping TypeName="StarkStateModel.Final">
+              <MappingFragment StoreEntitySet="Final">
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
+                <ScalarProperty Name="finalgrade" ColumnName="finalgrade" />
+                <ScalarProperty Name="finalname" ColumnName="finalname" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

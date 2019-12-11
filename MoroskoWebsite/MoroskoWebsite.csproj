@@ -173,6 +173,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdvCPPsController.cs" />
     <Compile Include="Controllers\AdvVBsController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\FinalsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -183,6 +185,12 @@
       <DependentUpon>StarkStateEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AdvVB.cs">
+      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Course.cs">
+      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Final.cs">
       <DependentUpon>StarkStateEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -292,6 +300,16 @@
     <Content Include="Views\AdvVBs\Details.cshtml" />
     <Content Include="Views\AdvVBs\Edit.cshtml" />
     <Content Include="Views\AdvVBs\Index.cshtml" />
+    <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
+    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Finals\Create.cshtml" />
+    <Content Include="Views\Finals\Delete.cshtml" />
+    <Content Include="Views\Finals\Details.cshtml" />
+    <Content Include="Views\Finals\Edit.cshtml" />
+    <Content Include="Views\Finals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
