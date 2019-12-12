@@ -12,13 +12,11 @@ namespace MoroskoWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Course
+    public partial class login
     {
         public int Id { get; set; }
-        public string coursename { get; set; }
-        public string coursegrade { get; set; }
-        public int finalId { get; set; }
-    
-        public virtual Final Final { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public string email { get; set; }
     }
 }

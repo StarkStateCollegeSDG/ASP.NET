@@ -25,11 +25,16 @@ namespace MoroskoWebsite.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        //SK: Each DBSet correlates to an entity in our enitity model.
-        //SK: A DBSet can can be thought of as a table in a database.
         public virtual DbSet<AdvVB> AdvVBs { get; set; }
         public virtual DbSet<AdvCPP> AdvCPPs { get; set; }
+        public virtual DbSet<aspnet_Applications> aspnet_Applications { get; set; }
+        public virtual DbSet<aspnet_Membership> aspnet_Membership { get; set; }
+        public virtual DbSet<aspnet_Profile> aspnet_Profile { get; set; }
+        public virtual DbSet<aspnet_Roles> aspnet_Roles { get; set; }
+        public virtual DbSet<aspnet_SchemaVersions> aspnet_SchemaVersions { get; set; }
+        public virtual DbSet<aspnet_Users> aspnet_Users { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Final> Finals { get; set; }
+        public virtual DbSet<login> logins { get; set; }
     }
 }

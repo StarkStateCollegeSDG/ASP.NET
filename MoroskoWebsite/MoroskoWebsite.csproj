@@ -187,6 +187,24 @@
     <Compile Include="Models\AdvVB.cs">
       <DependentUpon>StarkStateEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\aspnet_Applications.cs">
+      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Membership.cs">
+      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Profile.cs">
+      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Roles.cs">
+      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_SchemaVersions.cs">
+      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Users.cs">
+      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Course.cs">
       <DependentUpon>StarkStateEntity.tt</DependentUpon>
     </Compile>
@@ -194,6 +212,9 @@
       <DependentUpon>StarkStateEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\login.cs">
+      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\StarkStateEntity.Context.cs">
       <AutoGen>True</AutoGen>

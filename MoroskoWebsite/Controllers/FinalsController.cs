@@ -17,8 +17,7 @@ namespace MoroskoWebsite.Controllers
         // GET: Finals
         public ActionResult Index()
         {
-            var finals = db.Finals.Include(f => f.Course);
-            return View(finals.ToList());
+            return View(db.Finals.ToList());
         }
 
         // GET: Finals/Details/5
@@ -39,7 +38,6 @@ namespace MoroskoWebsite.Controllers
         // GET: Finals/Create
         public ActionResult Create()
         {
-            ViewBag.courseId = new SelectList(db.Courses, "Id", "coursename");
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,finalname,finalgrade,courseId")] Final final)
+        public ActionResult Create([Bind(Include = "Id,finalname,finalgrade")] Final final)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +55,6 @@ namespace MoroskoWebsite.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.courseId = new SelectList(db.Courses, "Id", "coursename", final.courseId);
             return View(final);
         }
 
@@ -73,7 +70,6 @@ namespace MoroskoWebsite.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.courseId = new SelectList(db.Courses, "Id", "coursename", final.courseId);
             return View(final);
         }
 
@@ -82,7 +78,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,finalname,finalgrade,courseId")] Final final)
+        public ActionResult Edit([Bind(Include = "Id,finalname,finalgrade")] Final final)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +86,6 @@ namespace MoroskoWebsite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.courseId = new SelectList(db.Courses, "Id", "coursename", final.courseId);
             return View(final);
         }
 

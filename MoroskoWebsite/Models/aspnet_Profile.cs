@@ -12,13 +12,14 @@ namespace MoroskoWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Course
+    public partial class aspnet_Profile
     {
-        public int Id { get; set; }
-        public string coursename { get; set; }
-        public string coursegrade { get; set; }
-        public int finalId { get; set; }
+        public System.Guid UserId { get; set; }
+        public string PropertyNames { get; set; }
+        public string PropertyValuesString { get; set; }
+        public byte[] PropertyValuesBinary { get; set; }
+        public System.DateTime LastUpdatedDate { get; set; }
     
-        public virtual Final Final { get; set; }
+        public virtual aspnet_Users aspnet_Users { get; set; }
     }
 }

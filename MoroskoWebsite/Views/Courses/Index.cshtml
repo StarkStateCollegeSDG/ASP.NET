@@ -17,6 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.coursegrade)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Final.finalname)
+        </th>
         <th></th>
     </tr>
 
@@ -29,9 +32,12 @@
             @Html.DisplayFor(modelItem => item.coursegrade)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.DisplayFor(modelItem => item.Final.finalname)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

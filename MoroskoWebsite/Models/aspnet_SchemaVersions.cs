@@ -12,13 +12,10 @@ namespace MoroskoWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Course
+    public partial class aspnet_SchemaVersions
     {
-        public int Id { get; set; }
-        public string coursename { get; set; }
-        public string coursegrade { get; set; }
-        public int finalId { get; set; }
-    
-        public virtual Final Final { get; set; }
+        public string Feature { get; set; }
+        public string CompatibleSchemaVersion { get; set; }
+        public bool IsCurrentVersion { get; set; }
     }
 }

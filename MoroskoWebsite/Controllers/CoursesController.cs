@@ -17,7 +17,8 @@ namespace MoroskoWebsite.Controllers
         // GET: Courses
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            var courses = db.Courses.Include(c => c.Final);
+            return View(courses.ToList());
         }
 
         // GET: Courses/Details/5
@@ -38,6 +39,7 @@ namespace MoroskoWebsite.Controllers
         // GET: Courses/Create
         public ActionResult Create()
         {
+            ViewBag.finalId = new SelectList(db.Finals, "Id", "finalname");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,coursename,coursegrade")] Course course)
+        public ActionResult Create([Bind(Include = "Id,coursename,coursegrade,finalId")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace MoroskoWebsite.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.finalId = new SelectList(db.Finals, "Id", "finalname", course.finalId);
             return View(course);
         }
 
@@ -70,6 +73,7 @@ namespace MoroskoWebsite.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.finalId = new SelectList(db.Finals, "Id", "finalname", course.finalId);
             return View(course);
         }
 
@@ -78,7 +82,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,coursename,coursegrade")] Course course)
+        public ActionResult Edit([Bind(Include = "Id,coursename,coursegrade,finalId")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace MoroskoWebsite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.finalId = new SelectList(db.Finals, "Id", "finalname", course.finalId);
             return View(course);
         }
 

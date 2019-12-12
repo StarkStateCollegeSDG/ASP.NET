@@ -12,19 +12,22 @@ namespace MoroskoWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Final
+    public partial class aspnet_Roles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Final()
+        public aspnet_Roles()
         {
-            this.Courses = new HashSet<Course>();
+            this.aspnet_Users = new HashSet<aspnet_Users>();
         }
     
-        public int Id { get; set; }
-        public string finalname { get; set; }
-        public string finalgrade { get; set; }
+        public System.Guid ApplicationId { get; set; }
+        public System.Guid RoleId { get; set; }
+        public string RoleName { get; set; }
+        public string LoweredRoleName { get; set; }
+        public string Description { get; set; }
     
+        public virtual aspnet_Applications aspnet_Applications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<aspnet_Users> aspnet_Users { get; set; }
     }
 }
