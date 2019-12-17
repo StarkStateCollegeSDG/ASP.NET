@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,7 +18,12 @@ namespace MoroskoWebsite.Controllers
         // GET: Courses
         public ActionResult Index()
         {
-            var courses = db.Courses.Include(c => c.Final);
+            //This linq query gives us only the courses registered by the user.
+            //TODO: Grab the users id and insert it into the query with a where clause.
+            var courses = from c in db.Courses
+                          join u in db.UserCourses on c.Id equals u.courseId
+                          select c;
+
             return View(courses.ToList());
         }
 

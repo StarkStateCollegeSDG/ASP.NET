@@ -17,7 +17,7 @@ namespace MoroskoWebsite.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Course()
         {
-            this.AspNetUsers = new HashSet<AspNetUser>();
+            this.UserCourses = new HashSet<UserCourse>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace MoroskoWebsite.Models
     
         public virtual Final Final { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        public virtual ICollection<UserCourse> UserCourses { get; set; }
     }
 }

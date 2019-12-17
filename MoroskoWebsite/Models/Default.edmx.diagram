@@ -18,7 +18,9 @@
         <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_finalId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.UserCourse" />
+        <EntityTypeShape EntityType="Model.UserCourse" Width="1.5" PointX="8.25" PointY="7.25" />
+        <AssociationConnector Association="Model.FK_aspnetusersId" />
+        <AssociationConnector Association="Model.FK_courseId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

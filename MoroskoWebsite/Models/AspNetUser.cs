@@ -20,7 +20,7 @@ namespace MoroskoWebsite.Models
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.AspNetRoles = new HashSet<AspNetRole>();
-            this.Courses = new HashSet<Course>();
+            this.UserCourses = new HashSet<UserCourse>();
         }
     
         public string Id { get; set; }
@@ -43,6 +43,6 @@ namespace MoroskoWebsite.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<UserCourse> UserCourses { get; set; }
     }
 }
