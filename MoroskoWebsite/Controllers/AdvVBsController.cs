@@ -12,7 +12,7 @@ namespace MoroskoWebsite.Controllers
 {
     public class AdvVBsController : Controller
     {
-        private StarkStateEntities db = new StarkStateEntities();
+        private Entities db = new Entities();
 
         // GET: AdvVBs
         public ActionResult Index()

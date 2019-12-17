@@ -29,5 +29,13 @@ namespace MoroskoWebsite.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<MoroskoWebsite.Models.AdvCPP> AdvCPPs { get; set; }
+
+        public System.Data.Entity.DbSet<MoroskoWebsite.Models.AdvVB> AdvVBs { get; set; }
+
+        public System.Data.Entity.DbSet<MoroskoWebsite.Models.Course> Courses { get; set; }
+
+        public System.Data.Entity.DbSet<MoroskoWebsite.Models.Final> Finals { get; set; }
     }
 }

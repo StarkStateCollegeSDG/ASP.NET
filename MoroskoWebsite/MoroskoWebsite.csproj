@@ -182,63 +182,53 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdvCPP.cs">
-      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+      <DependentUpon>Default.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AdvVB.cs">
-      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+      <DependentUpon>Default.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\aspnet_Applications.cs">
-      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>Default.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\aspnet_Membership.cs">
-      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>Default.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\aspnet_Profile.cs">
-      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>Default.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\aspnet_Roles.cs">
-      <DependentUpon>StarkStateEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aspnet_SchemaVersions.cs">
-      <DependentUpon>StarkStateEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aspnet_Users.cs">
-      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>Default.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Course.cs">
-      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+      <DependentUpon>Default.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>Default.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Default.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Default.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Default.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Default.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Default.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Default.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Final.cs">
-      <DependentUpon>StarkStateEntity.tt</DependentUpon>
+      <DependentUpon>Default.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\login.cs">
-      <DependentUpon>StarkStateEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\StarkStateEntity.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StarkStateEntity.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\StarkStateEntity.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StarkStateEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\StarkStateEntity.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StarkStateEntity.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\StarkState.mdf" />
-    <Content Include="App_Data\StarkState_log.ldf">
-      <DependentUpon>StarkState.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -247,24 +237,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\StarkStateEntity.Context.tt">
+    <Content Include="Models\Default.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StarkStateEntity.edmx</DependentUpon>
-      <LastGenOutput>StarkStateEntity.Context.cs</LastGenOutput>
+      <DependentUpon>Default.edmx</DependentUpon>
+      <LastGenOutput>Default.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\StarkStateEntity.tt">
+    <Content Include="Models\Default.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StarkStateEntity.edmx</DependentUpon>
-      <LastGenOutput>StarkStateEntity.cs</LastGenOutput>
+      <DependentUpon>Default.edmx</DependentUpon>
+      <LastGenOutput>Default.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\StarkStateEntity.edmx">
+    <EntityDeploy Include="Models\Default.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StarkStateEntity.Designer.cs</LastGenOutput>
+      <LastGenOutput>Default.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\StarkStateEntity.edmx.diagram">
-      <DependentUpon>StarkStateEntity.edmx</DependentUpon>
+    <Content Include="Models\Default.edmx.diagram">
+      <DependentUpon>Default.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -347,6 +337,10 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

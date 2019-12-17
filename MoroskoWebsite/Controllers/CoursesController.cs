@@ -12,7 +12,7 @@ namespace MoroskoWebsite.Controllers
 {
     public class CoursesController : Controller
     {
-        private StarkStateEntities db = new StarkStateEntities();
+        private Entities db = new Entities();
 
         // GET: Courses
         public ActionResult Index()
