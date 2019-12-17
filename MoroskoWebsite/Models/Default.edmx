@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -101,6 +101,38 @@
           <Property Name="finalname" Type="varchar" MaxLength="100" />
           <Property Name="finalgrade" Type="varchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="UserCourse">
+          <Key>
+            <PropertyRef Name="aspnetusersId" />
+            <PropertyRef Name="courseId" />
+          </Key>
+          <Property Name="aspnetusersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="courseId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_aspnetusersId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UserCourse" Type="Self.UserCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCourse">
+              <PropertyRef Name="aspnetusersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_courseId">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="UserCourse" Type="Self.UserCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCourse">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -180,6 +212,15 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Final" EntityType="Self.Final" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserCourse" EntityType="Self.UserCourse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_aspnetusersId" Association="Self.FK_aspnetusersId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserCourse" EntitySet="UserCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_courseId" Association="Self.FK_courseId">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="UserCourse" EntitySet="UserCourse" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -201,8 +242,7 @@
             <End Role="Course" EntitySet="Course" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -282,6 +322,7 @@
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="Courses" Relationship="Model.UserCourse" FromRole="AspNetUser" ToRole="Course" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -292,6 +333,7 @@
           <Property Name="coursegrade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="finalId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Final" Relationship="Self.FK_finalId" FromRole="Course" ToRole="Final" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Model.UserCourse" FromRole="Course" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="Final">
           <Key>
@@ -372,7 +414,15 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <AssociationSet Name="UserCourse" Association="Model.UserCourse">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="UserCourse">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <End Type="Model.Course" Role="Course" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -479,6 +529,14 @@
             </EndProperty>
             <EndProperty Name="AspNetUsers">
               <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserCourse" TypeName="Model.UserCourse" StoreEntitySet="UserCourse">
+            <EndProperty Name="Course">
+              <ScalarProperty Name="Id" ColumnName="courseId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="aspnetusersId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

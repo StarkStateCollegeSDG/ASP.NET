@@ -14,11 +14,19 @@ namespace MoroskoWebsite.Models
     
     public partial class Course
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Course()
+        {
+            this.AspNetUsers = new HashSet<AspNetUser>();
+        }
+    
         public int Id { get; set; }
         public string coursename { get; set; }
         public string coursegrade { get; set; }
         public int finalId { get; set; }
     
         public virtual Final Final { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

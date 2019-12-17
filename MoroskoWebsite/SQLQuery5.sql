@@ -30,3 +30,13 @@ CREATE TABLE [dbo].[AdvVBs] (
     CONSTRAINT [PK_AdvVBs] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
+CREATE TABLE [dbo].[UserCourse] (
+    [aspnetusersId] NVARCHAR (128) NOT NULL,
+    [courseId]      INT            NOT NULL,
+    CONSTRAINT [PK_UserContact] PRIMARY KEY CLUSTERED ([aspnetusersId] ASC, [courseId] ASC),
+    CONSTRAINT [FK_aspnetusersId] FOREIGN KEY ([aspnetusersId]) REFERENCES [dbo].[AspNetUsers] ([Id]),
+    CONSTRAINT [FK_courseId] FOREIGN KEY ([courseId]) REFERENCES [dbo].[Course] ([Id])
+);
+
+
+
