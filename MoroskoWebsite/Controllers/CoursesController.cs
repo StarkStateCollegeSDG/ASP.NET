@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using MoroskoWebsite.Models;
 
 namespace MoroskoWebsite.Controllers
@@ -18,6 +19,7 @@ namespace MoroskoWebsite.Controllers
         // GET: Courses
         public ActionResult Index()
         {
+            var userID = User.Identity.GetUserId();
             //This linq query gives us only the courses registered by the user.
             //TODO: Grab the users id and insert it into the query with a where clause.
             var courses = from c in db.Courses
