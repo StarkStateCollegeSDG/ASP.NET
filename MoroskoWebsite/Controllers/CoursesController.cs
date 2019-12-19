@@ -24,7 +24,7 @@ namespace MoroskoWebsite.Controllers
             //TODO: Grab the users id and insert it into the query with a where clause.
             var courses = from c in db.Courses
                           join u in db.UserCourses on c.Id equals u.courseId
-                          //where u.aspnetusersId == userID
+                          where u.aspnetusersId == userID
                           select c;
 
             return View(courses.ToList());
