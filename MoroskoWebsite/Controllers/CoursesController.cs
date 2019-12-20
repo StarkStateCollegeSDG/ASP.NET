@@ -21,7 +21,6 @@ namespace MoroskoWebsite.Controllers
         {
             var userID = User.Identity.GetUserId();
             //This linq query gives us only the courses registered by the user.
-            //TODO: Grab the users id and insert it into the query with a where clause.
             var courses = from c in db.Courses
                           join u in db.UserCourses on c.Id equals u.courseId
                           where u.aspnetusersId == userID
