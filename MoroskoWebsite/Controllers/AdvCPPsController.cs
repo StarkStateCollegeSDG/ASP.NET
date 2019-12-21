@@ -35,6 +35,7 @@ namespace MoroskoWebsite.Controllers
             return View(advCPP);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: AdvCPPs/Create
         public ActionResult Create()
         {
@@ -58,6 +59,7 @@ namespace MoroskoWebsite.Controllers
             return View(advCPP);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: AdvCPPs/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -89,6 +91,7 @@ namespace MoroskoWebsite.Controllers
             return View(advCPP);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: AdvCPPs/Delete/5
         public ActionResult Delete(int? id)
         {

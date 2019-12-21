@@ -195,6 +195,9 @@
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetRoleAspNetUser.cs">
+      <DependentUpon>Default.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
@@ -202,6 +205,9 @@
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>Default.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cours.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Course.cs">
@@ -228,8 +234,14 @@
     <Compile Include="Models\Final.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Final1.cs">
+      <DependentUpon>Default.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserCours.cs">
+      <DependentUpon>Default.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserCourse.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
@@ -250,6 +262,7 @@
       <DependentUpon>Default.edmx</DependentUpon>
       <LastGenOutput>Default.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\Default.edmx.sql" />
     <Content Include="Models\Default.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Default.edmx</DependentUpon>

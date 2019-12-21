@@ -4,247 +4,317 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AdvCPP">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="projectname" Type="varchar" MaxLength="100" />
-          <Property Name="description" Type="varchar(max)" />
-          <Property Name="studentname" Type="varchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="AdvVBs">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="projectname" Type="varchar" MaxLength="100" />
-          <Property Name="description" Type="varchar(max)" />
-          <Property Name="studentname" Type="varchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="AspNetRoles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUserClaims">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ClaimType" Type="nvarchar(max)" />
-          <Property Name="ClaimValue" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="AspNetUserLogins">
-          <Key>
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUserRoles">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUsers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="256" />
-          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
-          <Property Name="PasswordHash" Type="nvarchar(max)" />
-          <Property Name="SecurityStamp" Type="nvarchar(max)" />
-          <Property Name="PhoneNumber" Type="nvarchar(max)" />
-          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="datetime" />
-          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Course">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="coursename" Type="varchar" MaxLength="100" />
-          <Property Name="coursegrade" Type="varchar" MaxLength="10" />
-          <Property Name="finalId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Final">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="finalname" Type="varchar" MaxLength="100" />
-          <Property Name="finalgrade" Type="varchar" MaxLength="10" />
-        </EntityType>
-        <EntityType Name="UserCourse">
-          <Key>
-            <PropertyRef Name="aspnetusersId" />
-            <PropertyRef Name="courseId" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="aspnetusersId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="courseId" Type="int" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_aspnetusersId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="UserCourse" Type="Self.UserCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserCourse">
-              <PropertyRef Name="aspnetusersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_courseId">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="UserCourse" Type="Self.UserCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Course">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserCourse">
-              <PropertyRef Name="courseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaims">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogins">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetRoles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_finalId">
-          <End Role="Final" Type="Self.Final" Multiplicity="1" />
-          <End Role="Course" Type="Self.Course" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Final">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Course">
-              <PropertyRef Name="finalId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="ModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AdvCPP" EntityType="Self.AdvCPP" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AdvVBs" EntityType="Self.AdvVBs" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Final" EntityType="Self.Final" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserCourse" EntityType="Self.UserCourse" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_aspnetusersId" Association="Self.FK_aspnetusersId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="UserCourse" EntitySet="UserCourse" />
-          </AssociationSet>
-          <AssociationSet Name="FK_courseId" Association="Self.FK_courseId">
-            <End Role="Course" EntitySet="Course" />
-            <End Role="UserCourse" EntitySet="UserCourse" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_finalId" Association="Self.FK_finalId">
-            <End Role="Final" EntitySet="Final" />
-            <End Role="Course" EntitySet="Course" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="C__MigrationHistory" EntityType="Model.Store.C__MigrationHistory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AdvVBs" EntityType="Model.Store.AdvVBs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetRoles" EntityType="Model.Store.AspNetRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Model.Store.AspNetUserClaims" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUsers" EntityType="Model.Store.AspNetUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Courses" EntityType="Model.Store.Courses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Finals" EntityType="Model.Store.Finals" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserCourses" EntityType="Model.Store.UserCourses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Model.Store.AspNetUserLogins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetRoleAspNetUsers" EntityType="Model.Store.AspNetRoleAspNetUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Courses1" EntityType="Model.Store.Courses1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Final1" EntityType="Model.Store.Final1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserCourses1" EntityType="Model.Store.UserCourses1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AdvCPPs" EntityType="Model.Store.AdvCPPs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Model.Store.AspNetUserRoles" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Model.Store.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_finalId" Association="Model.Store.FK_finalId">
+      <End Role="Final" EntitySet="Finals" />
+      <End Role="Course" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="Model.Store.FK_AspNetUserRoles_AspNetRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserRoles_AspNetUsers" Association="Model.Store.FK_AspNetUserRoles_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_aspnetusersId" Association="Model.Store.FK_aspnetusersId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="UserCourse" EntitySet="UserCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_courseId" Association="Model.Store.FK_courseId">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="UserCourse" EntitySet="UserCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Model.Store.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Courses_dbo_Finals_finalId" Association="Model.Store.FK_dbo_Courses_dbo_Finals_finalId">
+      <End Role="Final1" EntitySet="Final1" />
+      <End Role="Cours" EntitySet="Courses1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserCourses_dbo_Courses_courseId" Association="Model.Store.FK_dbo_UserCourses_dbo_Courses_courseId">
+      <End Role="Cours" EntitySet="Courses1" />
+      <End Role="UserCours" EntitySet="UserCourses1" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="ContextKey" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="32" />
+  </EntityType>
+  <EntityType Name="AdvVBs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="projectname" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="studentname" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ClaimType" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" Nullable="true" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="coursename" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="coursegrade" Type="varchar" Nullable="true" MaxLength="10" />
+    <Property Name="finalId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Finals">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="finalname" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="finalgrade" Type="varchar" Nullable="true" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="UserCourses">
+    <Key>
+      <PropertyRef Name="aspnetusersId" />
+      <PropertyRef Name="courseId" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="aspnetusersId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="courseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ProviderKey" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoleAspNetUsers">
+    <Key>
+      <PropertyRef Name="AspNetRole_Id" />
+      <PropertyRef Name="AspNetUser_Id" />
+    </Key>
+    <Property Name="AspNetRole_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="AspNetUser_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="Courses1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="coursename" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="coursegrade" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="finalId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Final1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="finalname" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="finalgrade" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="UserCourses1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="aspnetusersId" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="courseId" Type="int" Nullable="false" />
+    <Property Name="AspNetUser_Id" Type="nvarchar" Nullable="true" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="AdvCPPs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="projectname" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="studentname" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="AspNetRoles_Id" />
+      <PropertyRef Name="AspNetUsers_Id" />
+    </Key>
+    <Property Name="AspNetRoles_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="AspNetUsers_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Model.Store.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Model.Store.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_finalId">
+    <End Role="Final" Type="Model.Store.Finals" Multiplicity="1" />
+    <End Role="Course" Type="Model.Store.Courses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Final">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="finalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_aspnetusersId">
+    <End Role="AspNetUser" Type="Model.Store.AspNetUsers" Multiplicity="1" />
+    <End Role="UserCourse" Type="Model.Store.UserCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserCourse">
+        <PropertyRef Name="aspnetusersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_courseId">
+    <End Role="Course" Type="Model.Store.Courses" Multiplicity="1" />
+    <End Role="UserCourse" Type="Model.Store.UserCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserCourse">
+        <PropertyRef Name="courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUser" Type="Model.Store.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogin" Type="Model.Store.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Courses_dbo_Finals_finalId">
+    <End Role="Final1" Type="Model.Store.Final1" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cours" Type="Model.Store.Courses1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Final1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="finalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserCourses_dbo_Courses_courseId">
+    <End Role="Cours" Type="Model.Store.Courses1" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserCours" Type="Model.Store.UserCourses1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cours">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserCours">
+        <PropertyRef Name="courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserRoles_AspNetRoles">
+    <End Role="AspNetRoles" Type="Model.Store.AspNetRoles" Multiplicity="1" />
+    <End Role="AspNetUserRoles" Type="Model.Store.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="AspNetRoles_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserRoles_AspNetUsers">
+    <End Role="AspNetUserRoles" Type="Model.Store.AspNetUserRoles" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Model.Store.AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="AspNetUsers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -258,23 +328,14 @@
           <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="AdvCPP">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="projectname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="studentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="AdvVB">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="projectname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="studentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="projectname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="studentname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
@@ -367,7 +428,6 @@
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-          <EntitySet Name="AdvCPPs" EntityType="Self.AdvCPP" />
           <EntitySet Name="AdvVBs" EntityType="Self.AdvVB" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
@@ -400,6 +460,19 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
           </AssociationSet>
+          <EntitySet Name="AspNetRoleAspNetUsers" EntityType="Model.AspNetRoleAspNetUser" />
+          <EntitySet Name="Courses1" EntityType="Model.Cours" />
+          <EntitySet Name="Final1" EntityType="Model.Final1" />
+          <EntitySet Name="UserCourses1" EntityType="Model.UserCours" />
+          <AssociationSet Name="FK_dbo_Courses_dbo_Finals_finalId" Association="Model.FK_dbo_Courses_dbo_Finals_finalId">
+            <End Role="Final1" EntitySet="Final1" />
+            <End Role="Cours" EntitySet="Courses1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserCourses_dbo_Courses_courseId" Association="Model.FK_dbo_UserCourses_dbo_Courses_courseId">
+            <End Role="Cours" EntitySet="Courses1" />
+            <End Role="UserCours" EntitySet="UserCourses1" />
+          </AssociationSet>
+          <EntitySet Name="AdvCPPs" EntityType="Model.AdvCPP" />
         </EntityContainer>
         <EntityType Name="UserCourse">
           <Key>
@@ -462,127 +535,238 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AspNetRoleAspNetUser">
+          <Key>
+            <PropertyRef Name="AspNetRole_Id" />
+            <PropertyRef Name="AspNetUser_Id" />
+          </Key>
+          <Property Name="AspNetRole_Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AspNetUser_Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="coursegrade" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="finalId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Final" Relationship="Model.FK_dbo_Courses_dbo_Finals_finalId" FromRole="Cours" ToRole="Final1" />
+          <NavigationProperty Name="UserCourses" Relationship="Model.FK_dbo_UserCourses_dbo_Courses_courseId" FromRole="Cours" ToRole="UserCours" />
+        </EntityType>
+        <EntityType Name="Final1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="finalname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="finalgrade" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Courses" Relationship="Model.FK_dbo_Courses_dbo_Finals_finalId" FromRole="Final1" ToRole="Cours" />
+        </EntityType>
+        <EntityType Name="UserCours">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aspnetusersId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="courseId" Type="Int32" Nullable="false" />
+          <Property Name="AspNetUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cours" Relationship="Model.FK_dbo_UserCourses_dbo_Courses_courseId" FromRole="UserCours" ToRole="Cours" />
+        </EntityType>
+        <Association Name="FK_dbo_Courses_dbo_Finals_finalId">
+          <End Type="Model.Final1" Role="Final1" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Cours" Role="Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Final1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="finalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserCourses_dbo_Courses_courseId">
+          <End Type="Model.Cours" Role="Cours" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.UserCours" Role="UserCours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCours">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AdvCPP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="projectname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="studentname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="Model.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AdvCPPs">
-            <EntityTypeMapping TypeName="Model.AdvCPP">
-              <MappingFragment StoreEntitySet="AdvCPP">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="projectname" ColumnName="projectname" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="studentname" ColumnName="studentname" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AdvVBs">
-            <EntityTypeMapping TypeName="Model.AdvVB">
-              <MappingFragment StoreEntitySet="AdvVBs">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="projectname" ColumnName="projectname" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="studentname" ColumnName="studentname" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="Model.AspNetRole">
-              <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="Model.AspNetUserClaim">
-              <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="Model.AspNetUser">
-              <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="Model.Course">
-              <MappingFragment StoreEntitySet="Course">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="coursename" ColumnName="coursename" />
-                <ScalarProperty Name="coursegrade" ColumnName="coursegrade" />
-                <ScalarProperty Name="finalId" ColumnName="finalId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Finals">
-            <EntityTypeMapping TypeName="Model.Final">
-              <MappingFragment StoreEntitySet="Final">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="finalname" ColumnName="finalname" />
-                <ScalarProperty Name="finalgrade" ColumnName="finalgrade" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetRoles">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-            <EndProperty Name="AspNetUsers">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="UserCourses">
-            <EntityTypeMapping TypeName="Model.UserCourse">
-              <MappingFragment StoreEntitySet="UserCourse">
-                <ScalarProperty Name="courseId" ColumnName="courseId" />
-                <ScalarProperty Name="aspnetusersId" ColumnName="aspnetusersId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="Model.AspNetUserLogin">
-              <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.C__MigrationHistory)">
+        <MappingFragment StoreEntitySet="C__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdvVBs">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AdvVB)">
+        <MappingFragment StoreEntitySet="AdvVBs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="projectname" ColumnName="projectname" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="studentname" ColumnName="studentname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetRole)">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUserClaim)">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUser)">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Course)">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="coursename" ColumnName="coursename" />
+          <ScalarProperty Name="coursegrade" ColumnName="coursegrade" />
+          <ScalarProperty Name="finalId" ColumnName="finalId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Finals">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Final)">
+        <MappingFragment StoreEntitySet="Finals">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="finalname" ColumnName="finalname" />
+          <ScalarProperty Name="finalgrade" ColumnName="finalgrade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserCourses">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.UserCourse)">
+        <MappingFragment StoreEntitySet="UserCourses">
+          <ScalarProperty Name="aspnetusersId" ColumnName="aspnetusersId" />
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUserLogin)">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoleAspNetUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetRoleAspNetUser)">
+        <MappingFragment StoreEntitySet="AspNetRoleAspNetUsers">
+          <ScalarProperty Name="AspNetRole_Id" ColumnName="AspNetRole_Id" />
+          <ScalarProperty Name="AspNetUser_Id" ColumnName="AspNetUser_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses1">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Cours)">
+        <MappingFragment StoreEntitySet="Courses1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="coursename" ColumnName="coursename" />
+          <ScalarProperty Name="coursegrade" ColumnName="coursegrade" />
+          <ScalarProperty Name="finalId" ColumnName="finalId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Final1">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Final1)">
+        <MappingFragment StoreEntitySet="Final1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="finalname" ColumnName="finalname" />
+          <ScalarProperty Name="finalgrade" ColumnName="finalgrade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserCourses1">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.UserCours)">
+        <MappingFragment StoreEntitySet="UserCourses1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="aspnetusersId" ColumnName="aspnetusersId" />
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+          <ScalarProperty Name="AspNetUser_Id" ColumnName="AspNetUser_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdvCPPs">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AdvCPP)">
+        <MappingFragment StoreEntitySet="AdvCPPs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="projectname" ColumnName="projectname" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="studentname" ColumnName="studentname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="AspNetRoles_Id" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="AspNetUsers_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -596,7 +780,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

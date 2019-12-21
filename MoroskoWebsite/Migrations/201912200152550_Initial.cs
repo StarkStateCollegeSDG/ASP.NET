@@ -9,6 +9,7 @@
         {
             //Commented this out so whenever we run update-database it does not try to 
             //re-create the database.
+
             /*
             CreateTable(
                 "dbo.AdvCPPs",

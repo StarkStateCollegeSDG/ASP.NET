@@ -35,6 +35,7 @@ namespace MoroskoWebsite.Controllers
             return View(advVB);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: AdvVBs/Create
         public ActionResult Create()
         {
@@ -58,6 +59,7 @@ namespace MoroskoWebsite.Controllers
             return View(advVB);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: AdvVBs/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -89,6 +91,7 @@ namespace MoroskoWebsite.Controllers
             return View(advVB);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: AdvVBs/Delete/5
         public ActionResult Delete(int? id)
         {

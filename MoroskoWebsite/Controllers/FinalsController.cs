@@ -35,6 +35,7 @@ namespace MoroskoWebsite.Controllers
             return View(final);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Finals/Create
         public ActionResult Create()
         {
@@ -58,6 +59,7 @@ namespace MoroskoWebsite.Controllers
             return View(final);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Finals/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -89,6 +91,7 @@ namespace MoroskoWebsite.Controllers
             return View(final);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Finals/Delete/5
         public ActionResult Delete(int? id)
         {

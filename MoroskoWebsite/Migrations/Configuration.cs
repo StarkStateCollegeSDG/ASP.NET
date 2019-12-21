@@ -29,12 +29,17 @@
             {
                 var user = new ApplicationUser
                 {
-                    UserName = "Admin",
+                    //UserName and Email must have the same values.
+                    //If not login will not work.
+                    UserName = "admin@domain.com",
                     Email = "admin@domain.com"
                 };
+                //Need to create and save the user to database.
                 IdentityResult result = userManager.Create(user, "K@pp@ Th3t@");
                 context.Roles.AddOrUpdate(r => r.Name, new IdentityRole { Name = "Admin" });
                 context.SaveChanges();
+                //Separate save because now we need to 
+                //save the users new role.
                 userManager.AddToRole(user.Id, "Admin");
                 context.SaveChanges();
             }

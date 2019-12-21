@@ -21,15 +21,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <!--SK: Will need to come back and clean this section up. 
-                        May not need all of these views.-->
+                    <!--Will need to come back and clean this section up.
+    May not need all of these views.-->
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("AdvCPP", "Index", "AdvCPPs")</li>
-                    <li>@Html.ActionLink("AdvVB", "Index", "AdvVBs")</li>
-                    <li>@Html.ActionLink("Course", "Index", "Courses")</li>
-                    <li>@Html.ActionLink("Final", "Index", "Finals")</li>
+                    <!--Only logged in users will see these.-->
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("AdvCPP", "Index", "AdvCPPs")</li>
+                        <li>@Html.ActionLink("AdvVB", "Index", "AdvVBs")</li>
+                        <li>@Html.ActionLink("Course", "Index", "Courses")</li>
+                        <li>@Html.ActionLink("Final", "Index", "Finals")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
