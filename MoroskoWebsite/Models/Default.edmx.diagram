@@ -4,29 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="991b91c190614120bfe8caa72faff6a8" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AdvVB" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Final" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+      <Diagram DiagramId="164af690caa946d39fa186f883082dc1" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AdvCPP" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AdvVB" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetRole" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="6" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Final" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.UserCourse" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_aspnetusersId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_courseId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_finalId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.UserCourse" Width="1.5" PointX="8.25" PointY="7.25" />
-        <AssociationConnector Association="Model.FK_aspnetusersId" />
-        <AssociationConnector Association="Model.FK_courseId" />
-        <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="5.75" PointY="4.25" />
-        <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <EntityTypeShape EntityType="Model.AspNetRoleAspNetUser" Width="1.5" PointX="0.75" PointY="10.75" />
-        <EntityTypeShape EntityType="Model.Cours" Width="1.5" PointX="13" PointY="0.875" />
-        <EntityTypeShape EntityType="Model.Final1" Width="1.5" PointX="10.75" PointY="1.125" />
-        <EntityTypeShape EntityType="Model.UserCours" Width="1.5" PointX="15.25" PointY="1" />
-        <AssociationConnector Association="Model.FK_dbo_Courses_dbo_Finals_finalId" />
-        <AssociationConnector Association="Model.FK_dbo_UserCourses_dbo_Courses_courseId" />
-        <EntityTypeShape EntityType="Model.AdvCPP" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

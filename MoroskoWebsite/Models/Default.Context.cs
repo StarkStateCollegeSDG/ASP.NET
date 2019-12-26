@@ -13,10 +13,10 @@ namespace MoroskoWebsite.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class EntitiesDBConn : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public EntitiesDBConn()
+            : base("name=EntitiesDBConn")
         {
         }
     
@@ -26,18 +26,14 @@ namespace MoroskoWebsite.Models
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AdvCPP> AdvCPPs { get; set; }
         public virtual DbSet<AdvVB> AdvVBs { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Final> Finals { get; set; }
         public virtual DbSet<UserCourse> UserCourses { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetRoleAspNetUser> AspNetRoleAspNetUsers { get; set; }
-        public virtual DbSet<Cours> Courses1 { get; set; }
-        public virtual DbSet<Final1> Final1 { get; set; }
-        public virtual DbSet<UserCours> UserCourses1 { get; set; }
-        public virtual DbSet<AdvCPP> AdvCPPs { get; set; }
     }
 }

@@ -195,9 +195,6 @@
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetRoleAspNetUser.cs">
-      <DependentUpon>Default.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
@@ -205,9 +202,6 @@
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogin.cs">
-      <DependentUpon>Default.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Cours.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Course.cs">
@@ -234,14 +228,8 @@
     <Compile Include="Models\Final.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Final1.cs">
-      <DependentUpon>Default.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\UserCours.cs">
-      <DependentUpon>Default.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UserCourse.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
@@ -257,25 +245,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Default.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Default.edmx</DependentUpon>
-      <LastGenOutput>Default.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\Default.edmx.sql" />
-    <Content Include="Models\Default.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Default.edmx</DependentUpon>
-      <LastGenOutput>Default.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\Default.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Default.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Models\Default.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Default.edmx</DependentUpon>
+      <LastGenOutput>Default.Context.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Default.edmx.diagram">
       <DependentUpon>Default.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Default.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Default.edmx</DependentUpon>
+      <LastGenOutput>Default.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

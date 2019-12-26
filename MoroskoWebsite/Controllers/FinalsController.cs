@@ -12,7 +12,7 @@ namespace MoroskoWebsite.Controllers
 {
     public class FinalsController : Controller
     {
-        private Entities db = new Entities();
+        private EntitiesDBConn db = new EntitiesDBConn();
 
         // GET: Finals
         public ActionResult Index()
