@@ -188,6 +188,14 @@
     <Compile Include="Migrations\201912261516282_changes.designer.cs">
       <DependentUpon>201912261516282_changes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912261634048_changes1.cs" />
+    <Compile Include="Migrations\201912261634048_changes1.designer.cs">
+      <DependentUpon>201912261634048_changes1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912261636534_changes2.cs" />
+    <Compile Include="Migrations\201912261636534_changes2.designer.cs">
+      <DependentUpon>201912261636534_changes2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdvCPP.cs">
@@ -360,6 +368,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912261516282_changes.resx">
       <DependentUpon>201912261516282_changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912261634048_changes1.resx">
+      <DependentUpon>201912261634048_changes1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912261636534_changes2.resx">
+      <DependentUpon>201912261636534_changes2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

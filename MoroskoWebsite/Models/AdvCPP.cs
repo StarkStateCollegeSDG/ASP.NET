@@ -18,5 +18,6 @@ namespace MoroskoWebsite.Models
         public string projectname { get; set; }
         public string description { get; set; }
         public string studentname { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }
