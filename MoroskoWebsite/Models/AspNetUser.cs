@@ -21,6 +21,8 @@ namespace MoroskoWebsite.Models
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.UserCourses = new HashSet<UserCourse>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.AdvCPPs = new HashSet<AdvCPP>();
+            this.AdvVBs = new HashSet<AdvVB>();
         }
     
         public string Id { get; set; }
