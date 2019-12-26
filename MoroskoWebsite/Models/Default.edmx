@@ -23,7 +23,7 @@
           <Property Name="projectname" Type="varchar" MaxLength="100" />
           <Property Name="description" Type="varchar(max)" />
           <Property Name="studentname" Type="varchar" MaxLength="100" />
-          <Property Name="AspNetUser_Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="AspNetUser_Id" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="AdvVBs">
           <Key>
@@ -33,7 +33,7 @@
           <Property Name="projectname" Type="varchar" MaxLength="100" />
           <Property Name="description" Type="varchar(max)" />
           <Property Name="studentname" Type="varchar" MaxLength="100" />
-          <Property Name="AspNetUser_Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="AspNetUser_Id" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -137,30 +137,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_AdvCPP_dbo_AspNetUsers_AspNetUser_Id">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
-          <End Role="AdvCPP" Type="Self.AdvCPP" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AdvCPP">
-              <PropertyRef Name="AspNetUser_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AdvVBs_dbo_AspNetUsers_AspNetUser_Id">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
-          <End Role="AdvVBs" Type="Self.AdvVBs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AdvVBs">
-              <PropertyRef Name="AspNetUser_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -249,14 +225,6 @@
             <End Role="Course" EntitySet="Course" />
             <End Role="UserCourse" EntitySet="UserCourse" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_AdvCPP_dbo_AspNetUsers_AspNetUser_Id" Association="Self.FK_dbo_AdvCPP_dbo_AspNetUsers_AspNetUser_Id">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AdvCPP" EntitySet="AdvCPP" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AdvVBs_dbo_AspNetUsers_AspNetUser_Id" Association="Self.FK_dbo_AdvVBs_dbo_AspNetUsers_AspNetUser_Id">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AdvVBs" EntitySet="AdvVBs" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -300,7 +268,7 @@
           <Property Name="projectname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="studentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="AspNetUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AspNetUser_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AdvCPP_dbo_AspNetUsers_AspNetUser_Id" FromRole="AdvCPP" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AdvVB">
@@ -311,7 +279,7 @@
           <Property Name="projectname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="studentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="AspNetUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AspNetUser_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AdvVBs_dbo_AspNetUsers_AspNetUser_Id" FromRole="AdvVB" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetRole">
