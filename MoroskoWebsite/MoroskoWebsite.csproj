@@ -200,6 +200,10 @@
     <Compile Include="Migrations\201912261642215_changes3.designer.cs">
       <DependentUpon>201912261642215_changes3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912261719211_changes4.cs" />
+    <Compile Include="Migrations\201912261719211_changes4.designer.cs">
+      <DependentUpon>201912261719211_changes4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdvCPP.cs">
@@ -381,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912261642215_changes3.resx">
       <DependentUpon>201912261642215_changes3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912261719211_changes4.resx">
+      <DependentUpon>201912261719211_changes4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
