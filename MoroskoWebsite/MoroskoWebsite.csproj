@@ -184,6 +184,10 @@
     <Compile Include="Migrations\201912200152550_Initial.designer.cs">
       <DependentUpon>201912200152550_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912261516282_changes.cs" />
+    <Compile Include="Migrations\201912261516282_changes.designer.cs">
+      <DependentUpon>201912261516282_changes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdvCPP.cs">
@@ -353,6 +357,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912200152550_Initial.resx">
       <DependentUpon>201912200152550_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912261516282_changes.resx">
+      <DependentUpon>201912261516282_changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
