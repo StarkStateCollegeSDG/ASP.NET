@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using MoroskoWebsite.Models;
 
 namespace MoroskoWebsite.Controllers
@@ -17,7 +18,13 @@ namespace MoroskoWebsite.Controllers
         // GET: AdvCPPs
         public ActionResult Index()
         {
-            return View(db.AdvCPPs.ToList());
+            var userID = User.Identity.GetUserId();
+            //This linq query gives us only the projects assigned to the user.
+            var result = from c in db.AdvCPPs
+                          where c.AspNetUser_Id == userID
+                          select c;
+
+            return View(result.ToList());
         }
 
         // GET: AdvCPPs/Details/5
