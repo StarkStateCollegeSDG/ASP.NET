@@ -37,5 +37,7 @@ namespace MoroskoWebsite.Models
         public System.Data.Entity.DbSet<MoroskoWebsite.Models.Course> Courses { get; set; }
 
         public System.Data.Entity.DbSet<MoroskoWebsite.Models.Final> Finals { get; set; }
+
+        public System.Data.Entity.DbSet<MoroskoWebsite.Models.UserCourse> UserCourses { get; set; }
     }
 }

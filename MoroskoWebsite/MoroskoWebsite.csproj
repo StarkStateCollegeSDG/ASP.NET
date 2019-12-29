@@ -177,6 +177,7 @@
     <Compile Include="Controllers\FinalsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserCoursesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -366,6 +367,11 @@
     <Content Include="Views\Finals\Details.cshtml" />
     <Content Include="Views\Finals\Edit.cshtml" />
     <Content Include="Views\Finals\Index.cshtml" />
+    <Content Include="Views\UserCourses\Create.cshtml" />
+    <Content Include="Views\UserCourses\Delete.cshtml" />
+    <Content Include="Views\UserCourses\Details.cshtml" />
+    <Content Include="Views\UserCourses\Edit.cshtml" />
+    <Content Include="Views\UserCourses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
