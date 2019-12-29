@@ -41,6 +41,7 @@
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="AspNetUserId" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="AspNetUserClaims">
           <Key>
@@ -86,6 +87,7 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="AspNetRole_Id" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -134,6 +136,18 @@
             </Principal>
             <Dependent Role="UserCourse">
               <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetRoles">
+              <PropertyRef Name="AspNetUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -193,6 +207,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="AspNetRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_finalId">
           <End Role="Final" Type="Self.Final" Multiplicity="1" />
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
@@ -225,6 +251,10 @@
             <End Role="Course" EntitySet="Course" />
             <End Role="UserCourse" EntitySet="UserCourse" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId" Association="Self.FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -240,6 +270,10 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id" Association="Self.FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <AssociationSet Name="FK_finalId" Association="Self.FK_finalId">
             <End Role="Final" EntitySet="Final" />
@@ -289,6 +323,9 @@
           <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+          <Property Name="AspNetUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId" FromRole="AspNetRole" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="Model.FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id" FromRole="AspNetRole" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUserClaim">
           <Key>
@@ -334,6 +371,9 @@
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
           <NavigationProperty Name="AdvCPPs" Relationship="Model.FK_dbo_AdvCPP_dbo_AspNetUsers_AspNetUser_Id" FromRole="AspNetUser" ToRole="AdvCPP" />
           <NavigationProperty Name="AdvVBs" Relationship="Model.FK_dbo_AdvVBs_dbo_AspNetUsers_AspNetUser_Id" FromRole="AspNetUser" ToRole="AdvVB" />
+          <Property Name="AspNetRole_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRoles1" Relationship="Model.FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="AspNetRole" Relationship="Model.FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -477,6 +517,14 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AdvVB" EntitySet="AdvVBs" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId" Association="Model.FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id" Association="Model.FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_dbo_AdvCPP_dbo_AspNetUsers_AspNetUser_Id">
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -499,6 +547,30 @@
             </Principal>
             <Dependent Role="AdvVB">
               <PropertyRef Name="AspNetUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetRole">
+              <PropertyRef Name="AspNetUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id">
+          <End Type="Model.AspNetRole" Role="AspNetRole" Multiplicity="0..1" />
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="AspNetRole_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -543,6 +615,7 @@
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="Model.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -571,6 +644,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="Model.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="AspNetRole_Id" ColumnName="AspNetRole_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />

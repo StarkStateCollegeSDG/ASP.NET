@@ -26,7 +26,23 @@ namespace MoroskoWebsite.Controllers
                           where u.aspnetusersId == userID
                           select c;
 
-            return View(courses.ToList());
+            var AdminLogin = from user in db.AspNetUsers
+                             join role in db.AspNetRoles on user.Id equals role.AspNetUserId
+                             where role.Name == "Admin"
+                             select user.Id;
+            //Single gives us the single result of the
+            //above query as a string value.
+            string admin = AdminLogin.SingleOrDefault();
+            if (admin == userID)
+            {
+                //If the admin is logged in
+                //we will show everything.
+                return View(db.Courses.ToList());
+            }
+            else
+            {
+                return View(courses.ToList());
+            }
         }
 
         // GET: Courses/Details/5

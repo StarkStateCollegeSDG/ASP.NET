@@ -25,12 +25,12 @@ namespace MoroskoWebsite.Controllers
                          select v;
 
             var AdminLogin = from user in db.AspNetUsers
-                             join role in db.AspNetRoles on user.Id equals role.Id
+                             join role in db.AspNetRoles on user.Id equals role.AspNetUserId
                              where role.Name == "Admin"
                              select user.Id;
             //Single gives us the single result of the
             //above query as a string value.
-            string admin = AdminLogin.Single();
+            string admin = AdminLogin.SingleOrDefault();
             if (admin == userID)
             {
                 //If the admin is logged in

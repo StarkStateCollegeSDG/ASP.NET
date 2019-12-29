@@ -23,6 +23,7 @@ namespace MoroskoWebsite.Models
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.AdvCPPs = new HashSet<AdvCPP>();
             this.AdvVBs = new HashSet<AdvVB>();
+            this.AspNetRoles1 = new HashSet<AspNetRole>();
         }
     
         public string Id { get; set; }
@@ -37,7 +38,7 @@ namespace MoroskoWebsite.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
-        public virtual AspNetRole AspNetRole { get; set; }
+        public string AspNetRole_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -51,5 +52,8 @@ namespace MoroskoWebsite.Models
         public virtual ICollection<AdvCPP> AdvCPPs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdvVB> AdvVBs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetRole> AspNetRoles1 { get; set; }
+        public virtual AspNetRole AspNetRole { get; set; }
     }
 }
