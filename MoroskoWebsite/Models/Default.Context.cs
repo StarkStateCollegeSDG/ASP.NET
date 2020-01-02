@@ -35,5 +35,7 @@ namespace MoroskoWebsite.Models
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Final> Finals { get; set; }
         public virtual DbSet<UserCourse> UserCourses { get; set; }
+        public virtual DbSet<AdvVBStudent> AdvVBStudents { get; set; }
+        public virtual DbSet<AdvCPPStudent> AdvCPPStudents { get; set; }
     }
 }

@@ -525,6 +525,8 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="AdvVBStudents" EntityType="Model.AdvVBStudent" />
+          <EntitySet Name="AdvCPPStudents" EntityType="Model.AdvCPPStudent" />
         </EntityContainer>
         <Association Name="FK_dbo_AdvCPP_dbo_AspNetUsers_AspNetUser_Id">
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -574,6 +576,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AdvVBStudent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="AdvCPPStudent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

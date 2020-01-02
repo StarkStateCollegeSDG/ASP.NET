@@ -226,7 +226,13 @@
     <Compile Include="Models\AdvCPP.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdvCPPStudent.cs">
+      <DependentUpon>Default.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AdvVB.cs">
+      <DependentUpon>Default.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdvVBStudent.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetRole.cs">
