@@ -11,13 +11,11 @@ namespace MoroskoWebsite.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class AdvCPPStudent
     {
         public int Id { get; set; }
         public string aspnetuserId { get; set; }
-        [ForeignKey("AdvCPP")]
         public int advcppId { get; set; }
 
         //Foreign Keys

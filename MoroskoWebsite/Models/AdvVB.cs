@@ -25,7 +25,7 @@ namespace MoroskoWebsite.Models
         public string description { get; set; }
         public string studentname { get; set; }
         public string AspNetUser_Id { get; set; }
-
+    
         //Foreign Keys.
         public virtual AspNetUser AspNetUser { get; set; }
 

@@ -25,6 +25,14 @@
           <Property Name="studentname" Type="varchar" MaxLength="100" />
           <Property Name="AspNetUser_Id" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="AdvCPPStudents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aspnetuserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="advcppId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="AdvVBs">
           <Key>
             <PropertyRef Name="Id" />
@@ -144,6 +152,30 @@
             </Principal>
             <Dependent Role="UserCourse">
               <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId">
+          <End Role="AdvCPP" Type="Self.AdvCPP" Multiplicity="1" />
+          <End Role="AdvCPPStudents" Type="Self.AdvCPPStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvCPP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdvCPPStudents">
+              <PropertyRef Name="advcppId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="AdvCPPStudents" Type="Self.AdvCPPStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdvCPPStudents">
+              <PropertyRef Name="aspnetuserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -268,6 +300,7 @@
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdvCPP" EntityType="Self.AdvCPP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvCPPStudents" EntityType="Self.AdvCPPStudents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdvVBs" EntityType="Self.AdvVBs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdvVBStudents" EntityType="Self.AdvVBStudents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -285,6 +318,14 @@
           <AssociationSet Name="FK_courseId" Association="Self.FK_courseId">
             <End Role="Course" EntitySet="Course" />
             <End Role="UserCourse" EntitySet="UserCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId" Association="Self.FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId">
+            <End Role="AdvCPP" EntitySet="AdvCPP" />
+            <End Role="AdvCPPStudents" EntitySet="AdvCPPStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId" Association="Self.FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AdvCPPStudents" EntitySet="AdvCPPStudents" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId" Association="Self.FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId">
             <End Role="AdvVBs" EntitySet="AdvVBs" />
@@ -347,6 +388,7 @@
           <Property Name="studentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="AspNetUser_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AdvCPP_dbo_AspNetUsers_AspNetUser_Id" FromRole="AdvCPP" ToRole="AspNetUser" />
+          <NavigationProperty Name="AdvCPPStudents" Relationship="Model.FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId" FromRole="AdvCPP" ToRole="AdvCPPStudent" />
         </EntityType>
         <EntityType Name="AdvVB">
           <Key>
@@ -419,6 +461,7 @@
           <NavigationProperty Name="AspNetRoles1" Relationship="Model.FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="AspNetRole" Relationship="Model.FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="AdvVBStudents" Relationship="Model.FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId" FromRole="AspNetUser" ToRole="AdvVBStudent" />
+          <NavigationProperty Name="AdvCPPStudents" Relationship="Model.FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId" FromRole="AspNetUser" ToRole="AdvCPPStudent" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -570,7 +613,6 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="AdvCPPStudents" EntityType="Model.AdvCPPStudent" />
           <EntitySet Name="AdvVBStudents" EntityType="Model.AdvVBStudent" />
           <AssociationSet Name="FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId" Association="Model.FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId">
             <End Role="AdvVB" EntitySet="AdvVBs" />
@@ -579,6 +621,15 @@
           <AssociationSet Name="FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId" Association="Model.FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AdvVBStudent" EntitySet="AdvVBStudents" />
+          </AssociationSet>
+          <EntitySet Name="AdvCPPStudents" EntityType="Model.AdvCPPStudent" />
+          <AssociationSet Name="FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId" Association="Model.FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId">
+            <End Role="AdvCPP" EntitySet="AdvCPPs" />
+            <End Role="AdvCPPStudent" EntitySet="AdvCPPStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId" Association="Model.FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AdvCPPStudent" EntitySet="AdvCPPStudents" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_dbo_AdvCPP_dbo_AspNetUsers_AspNetUser_Id">
@@ -629,12 +680,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AdvCPPStudent">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
         <EntityType Name="AdvVBStudent">
           <Key>
             <PropertyRef Name="Id" />
@@ -667,6 +712,40 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="AdvVBStudent">
+              <PropertyRef Name="aspnetuserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AdvCPPStudent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aspnetuserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="advcppId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AdvCPP" Relationship="Model.FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId" FromRole="AdvCPPStudent" ToRole="AdvCPP" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId" FromRole="AdvCPPStudent" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId">
+          <End Type="Model.AdvCPP" Role="AdvCPP" Multiplicity="1" />
+          <End Type="Model.AdvCPPStudent" Role="AdvCPPStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvCPP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdvCPPStudent">
+              <PropertyRef Name="advcppId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="Model.AdvCPPStudent" Role="AdvCPPStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdvCPPStudent">
               <PropertyRef Name="aspnetuserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -797,6 +876,15 @@
             <EntityTypeMapping TypeName="Model.AdvVBStudent">
               <MappingFragment StoreEntitySet="AdvVBStudents">
                 <ScalarProperty Name="advvbId" ColumnName="advvbId" />
+                <ScalarProperty Name="aspnetuserId" ColumnName="aspnetuserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvCPPStudents">
+            <EntityTypeMapping TypeName="Model.AdvCPPStudent">
+              <MappingFragment StoreEntitySet="AdvCPPStudents">
+                <ScalarProperty Name="advcppId" ColumnName="advcppId" />
                 <ScalarProperty Name="aspnetuserId" ColumnName="aspnetuserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
