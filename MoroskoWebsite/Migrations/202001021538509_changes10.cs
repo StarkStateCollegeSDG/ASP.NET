@@ -16,17 +16,20 @@
                         advcppId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AdvCPPs", t => t.advcppId, cascadeDelete: true)
                 .ForeignKey("dbo.AspNetUsers", t => t.aspnetuserId)
                 .Index(t => t.aspnetuserId)
                 .Index(t => t.advcppId);
+            //Had to use this method instead of the typical
+            //.ForeignKey() method to get this to work. It does
+            //the exact same thing.
+            AddForeignKey("dbo.AdvCPPStudents", "advcppId", "dbo.AdvCPP", "Id");
             
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.AdvCPPStudents", "aspnetuserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AdvCPPStudents", "advcppId", "dbo.AdvCPPs");
+            DropForeignKey("dbo.AdvCPPStudents", "advcppId", "dbo.AdvCPP");
             DropIndex("dbo.AdvCPPStudents", new[] { "advcppId" });
             DropIndex("dbo.AdvCPPStudents", new[] { "aspnetuserId" });
             DropTable("dbo.AdvCPPStudents");

@@ -225,9 +225,9 @@
     <Compile Include="Migrations\202001021515089_changes9.designer.cs">
       <DependentUpon>202001021515089_changes9.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001021522466_changes10.cs" />
-    <Compile Include="Migrations\202001021522466_changes10.designer.cs">
-      <DependentUpon>202001021522466_changes10.cs</DependentUpon>
+    <Compile Include="Migrations\202001021538509_changes10.cs" />
+    <Compile Include="Migrations\202001021538509_changes10.designer.cs">
+      <DependentUpon>202001021538509_changes10.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -440,8 +440,8 @@
     <EmbeddedResource Include="Migrations\202001021515089_changes9.resx">
       <DependentUpon>202001021515089_changes9.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001021522466_changes10.resx">
-      <DependentUpon>202001021522466_changes10.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001021538509_changes10.resx">
+      <DependentUpon>202001021538509_changes10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

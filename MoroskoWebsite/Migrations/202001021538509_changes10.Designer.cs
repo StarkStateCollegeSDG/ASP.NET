@@ -13,7 +13,7 @@ namespace MoroskoWebsite.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202001021522466_changes10"; }
+            get { return "202001021538509_changes10"; }
         }
         
         string IMigrationMetadata.Source
