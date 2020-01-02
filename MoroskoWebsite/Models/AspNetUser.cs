@@ -24,6 +24,7 @@ namespace MoroskoWebsite.Models
             this.AdvCPPs = new HashSet<AdvCPP>();
             this.AdvVBs = new HashSet<AdvVB>();
             this.AspNetRoles1 = new HashSet<AspNetRole>();
+            this.AdvVBStudents = new HashSet<AdvVBStudent>();
         }
     
         public string Id { get; set; }
@@ -55,5 +56,7 @@ namespace MoroskoWebsite.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles1 { get; set; }
         public virtual AspNetRole AspNetRole { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AdvVBStudent> AdvVBStudents { get; set; }
     }
 }

@@ -25,8 +25,10 @@
         <AssociationConnector Association="Model.FK_dbo_AdvVBs_dbo_AspNetUsers_AspNetUser_Id" />
         <AssociationConnector Association="Model.FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id" />
-        <EntityTypeShape EntityType="Model.AdvVBStudent" Width="1.5" PointX="12.625" PointY="6.375" />
         <EntityTypeShape EntityType="Model.AdvCPPStudent" Width="1.5" PointX="12.5" PointY="8.25" />
+        <EntityTypeShape EntityType="Model.AdvVBStudent" Width="1.5" PointX="11" PointY="5" />
+        <AssociationConnector Association="Model.FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId" />
+        <AssociationConnector Association="Model.FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
