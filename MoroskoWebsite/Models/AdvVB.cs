@@ -25,10 +25,9 @@ namespace MoroskoWebsite.Models
         public string description { get; set; }
         public string studentname { get; set; }
         public string AspNetUser_Id { get; set; }
-    
-        //Foreign Keys.
-        public virtual AspNetUser AspNetUser { get; set; }
 
+        //Foreign Keys
+        public virtual AspNetUser AspNetUser { get; set; }
         //Tables that have a foreign key constraint linked to this table.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdvVBStudent> AdvVBStudents { get; set; }

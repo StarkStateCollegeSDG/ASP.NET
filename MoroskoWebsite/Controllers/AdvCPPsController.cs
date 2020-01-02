@@ -62,6 +62,7 @@ namespace MoroskoWebsite.Controllers
         // GET: AdvCPPs/Create
         public ActionResult Create()
         {
+            ViewBag.AspNetUser_Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
 
@@ -70,7 +71,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,projectname,description,studentname")] AdvCPP advCPP)
+        public ActionResult Create([Bind(Include = "Id,projectname,description,studentname,AspNetUser_Id")] AdvCPP advCPP)
         {
             if (ModelState.IsValid)
             {
@@ -79,6 +80,7 @@ namespace MoroskoWebsite.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.AspNetUser_Id = new SelectList(db.AspNetUsers, "Id", "Email", advCPP.AspNetUser_Id);
             return View(advCPP);
         }
 
