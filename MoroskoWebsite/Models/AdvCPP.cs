@@ -14,6 +14,12 @@ namespace MoroskoWebsite.Models
     
     public partial class AdvCPP
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AdvCPP()
+        {
+            this.AdvCPPStudents = new HashSet<AdvCPPStudent>();
+        }
+
         public int Id { get; set; }
         public string projectname { get; set; }
         public string description { get; set; }
@@ -21,5 +27,9 @@ namespace MoroskoWebsite.Models
         public string AspNetUser_Id { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
+
+        //Tables that have a foreign key constraint linked to this table.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AdvCPPStudent> AdvCPPStudents { get; set; }
     }
 }
