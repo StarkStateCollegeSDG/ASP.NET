@@ -15,5 +15,11 @@ namespace MoroskoWebsite.Models
     public partial class AdvVBStudent
     {
         public int Id { get; set; }
+        public int aspnetuserId { get; set; }
+        public int advvbId { get; set; }
+
+        //Foreign Keys
+        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual AdvVB AdvVB { get; set; }
     }
 }
