@@ -12,24 +12,23 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        aspnetuserId = c.Int(nullable: false),
+                        aspnetuserId = c.String(maxLength: 128),
                         advvbId = c.Int(nullable: false),
-                        AspNetUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AdvVBs", t => t.advvbId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.AspNetUser_Id)
-                .Index(t => t.advvbId)
-                .Index(t => t.AspNetUser_Id);
+                .ForeignKey("dbo.AspNetUsers", t => t.aspnetuserId)
+                .Index(t => t.aspnetuserId)
+                .Index(t => t.advvbId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.AdvVBStudents", "AspNetUser_Id", "dbo.AspNetUsers1");
+            DropForeignKey("dbo.AdvVBStudents", "aspnetuserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AdvVBStudents", "advvbId", "dbo.AdvVBs");
-            DropIndex("dbo.AdvVBStudents", new[] { "AspNetUser_Id" });
             DropIndex("dbo.AdvVBStudents", new[] { "advvbId" });
+            DropIndex("dbo.AdvVBStudents", new[] { "aspnetuserId" });
             DropTable("dbo.AdvVBStudents");
         }
     }

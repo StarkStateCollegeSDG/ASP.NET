@@ -15,7 +15,7 @@ namespace MoroskoWebsite.Models
     public partial class AdvVBStudent
     {
         public int Id { get; set; }
-        public int aspnetuserId { get; set; }
+        public string aspnetuserId { get; set; }
         public int advvbId { get; set; }
 
         //Foreign Keys
