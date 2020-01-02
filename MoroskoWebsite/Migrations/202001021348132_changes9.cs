@@ -18,7 +18,7 @@
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AdvVBs", t => t.advvbId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers1", t => t.AspNetUser_Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.AspNetUser_Id)
                 .Index(t => t.advvbId)
                 .Index(t => t.AspNetUser_Id);
             
