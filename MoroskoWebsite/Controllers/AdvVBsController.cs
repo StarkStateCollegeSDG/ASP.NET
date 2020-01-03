@@ -55,6 +55,7 @@ namespace MoroskoWebsite.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AspNetUser_Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View(advVB);
         }
 
@@ -62,6 +63,7 @@ namespace MoroskoWebsite.Controllers
         // GET: AdvVBs/Create
         public ActionResult Create()
         {
+            ViewBag.AspNetUser_Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
 
@@ -70,7 +72,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,projectname,description,studentname")] AdvVB advVB)
+        public ActionResult Create([Bind(Include = "Id,projectname,description,studentname,AspNetUser_Id")] AdvVB advVB)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +80,7 @@ namespace MoroskoWebsite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.AspNetUser_Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View(advVB);
         }
 
@@ -95,6 +97,7 @@ namespace MoroskoWebsite.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AspNetUser_Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View(advVB);
         }
 
@@ -103,7 +106,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,projectname,description,studentname")] AdvVB advVB)
+        public ActionResult Edit([Bind(Include = "Id,projectname,description,studentname,AspNetUser_Id")] AdvVB advVB)
         {
             if (ModelState.IsValid)
             {
@@ -111,6 +114,7 @@ namespace MoroskoWebsite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.AspNetUser_Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View(advVB);
         }
 
