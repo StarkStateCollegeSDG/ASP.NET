@@ -63,6 +63,13 @@ namespace MoroskoWebsite.Controllers
         // GET: AdvVBs/Create
         public ActionResult Create()
         {
+            #region comment for ViewBag.AspNetUser_Id
+            //This view bag needs to be named exactly AspNetUser_Id to match the foreign
+            //key in the table. This is for a drop down list that will assign the Id
+            //from the AspNetUsers table to the data row being created/edited, 
+            //however we will display the email and not the actual Id when using 
+            //the drop down.
+            #endregion
             ViewBag.AspNetUser_Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
@@ -80,6 +87,13 @@ namespace MoroskoWebsite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            #region comment for ViewBag.AspNetUser_Id
+            //This view bag needs to be named exactly AspNetUser_Id to match the foreign
+            //key in the table. This is for a drop down list that will assign the Id
+            //from the AspNetUsers table to the data row being created/edited, 
+            //however we will display the email and not the actual Id when using 
+            //the drop down.
+            #endregion
             ViewBag.AspNetUser_Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View(advVB);
         }
@@ -97,6 +111,13 @@ namespace MoroskoWebsite.Controllers
             {
                 return HttpNotFound();
             }
+            #region comment for ViewBag.AspNetUser_Id
+            //This view bag needs to be named exactly AspNetUser_Id to match the foreign
+            //key in the table. This is for a drop down list that will assign the Id
+            //from the AspNetUsers table to the data row being created/edited, 
+            //however we will display the email and not the actual Id when using 
+            //the drop down.
+            #endregion
             ViewBag.AspNetUser_Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View(advVB);
         }
@@ -114,6 +135,13 @@ namespace MoroskoWebsite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            #region comment for ViewBag.AspNetUser_Id
+            //This view bag needs to be named exactly AspNetUser_Id to match the foreign
+            //key in the table. This is for a drop down list that will assign the Id
+            //from the AspNetUsers table to the data row being created/edited, 
+            //however we will display the email and not the actual Id when using 
+            //the drop down.
+            #endregion
             ViewBag.AspNetUser_Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View(advVB);
         }
