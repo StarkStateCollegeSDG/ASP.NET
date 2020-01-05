@@ -5,6 +5,10 @@
 }
 
 <h2>Index</h2>
+@if (!User.Identity.IsAuthenticated)
+{
+    <h2>You are not enrolled in any courses.</h2>
+}
 
 @if (User.IsInRole("Admin"))
 {
