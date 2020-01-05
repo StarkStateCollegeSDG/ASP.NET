@@ -29,11 +29,11 @@
                     {
                         <li>@Html.ActionLink("AdvCPP", "Index", "AdvCPPs")</li>
                         <li>@Html.ActionLink("AdvVB", "Index", "AdvVBs")</li>
-                        <li>@Html.ActionLink("Final", "Index", "Finals")</li>
                     }
                     @if (User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("UserCourse", "Index", "UserCourses")</li>
+                        <li>@Html.ActionLink("Final", "Index", "Finals")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

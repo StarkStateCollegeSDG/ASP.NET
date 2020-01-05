@@ -10,6 +10,7 @@ using MoroskoWebsite.Models;
 
 namespace MoroskoWebsite.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class FinalsController : Controller
     {
         private EntitiesDBConn db = new EntitiesDBConn();
