@@ -155,5 +155,19 @@ namespace MoroskoWebsite.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult RouteToClass(int classId)
+        {
+            //Grade the name of the course.
+            var courses = from c in db.Courses
+                          where c.Id == classId
+                          select c.coursename;
+            //Controllers are plural (with an s).
+            //In the database they are singular.
+            string controller = courses.FirstOrDefault();
+            string controllerPlural = controller + "s";
+
+           return RedirectToAction("Index", controllerPlural);
+        }
     }
 }

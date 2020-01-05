@@ -7,7 +7,7 @@
 <h2>Index</h2>
 @if (!User.Identity.IsAuthenticated)
 {
-    <h2>You are not enrolled in any courses.</h2>
+    <h2>Please sign in to view courses you are enrolled in.</h2>
 }
 
 @if (User.IsInRole("Admin"))
@@ -35,7 +35,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.coursename)
+                @Html.ActionLink(item.coursename, "RouteToClass", "Courses", new { classId = item.Id }, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.coursegrade)
