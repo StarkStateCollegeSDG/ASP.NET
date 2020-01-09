@@ -228,6 +228,10 @@
     <Compile Include="Migrations\202001021538509_changes10.designer.cs">
       <DependentUpon>202001021538509_changes10.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001091947222_changes11.cs" />
+    <Compile Include="Migrations\202001091947222_changes11.designer.cs">
+      <DependentUpon>202001091947222_changes11.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdvCPP.cs">
@@ -438,6 +442,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001021538509_changes10.resx">
       <DependentUpon>202001021538509_changes10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001091947222_changes11.resx">
+      <DependentUpon>202001091947222_changes11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

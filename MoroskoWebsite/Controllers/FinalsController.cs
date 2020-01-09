@@ -40,7 +40,7 @@ namespace MoroskoWebsite.Controllers
             //however we will display the email and not the actual Id when using 
             //the drop down.
             #endregion
-            ViewBag.AspNetUser_Id = new SelectList(db.UserCourses, "Id", "aspnetusersId");
+            ViewBag.aspnetusersId = new SelectList(db.UserCourses, "Id", "aspnetusersId");
             return View(final);
         }
 
@@ -55,7 +55,7 @@ namespace MoroskoWebsite.Controllers
             //however we will display the email and not the actual Id when using 
             //the drop down.
             #endregion
-            ViewBag.AspNetUser_Id = new SelectList(db.UserCourses, "Id", "aspnetusersId");
+            ViewBag.aspnetusersId = new SelectList(db.UserCourses, "Id", "aspnetusersId");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,finalname,finalgrade")] Final final)
+        public ActionResult Create([Bind(Include = "Id,finalname,finalgrade,aspnetusersId")] Final final)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace MoroskoWebsite.Controllers
             //however we will display the email and not the actual Id when using 
             //the drop down.
             #endregion
-            ViewBag.AspNetUser_Id = new SelectList(db.UserCourses, "Id", "aspnetusersId");
+            ViewBag.aspnetusersId = new SelectList(db.UserCourses, "Id", "aspnetusersId");
 
             return View(final);
         }
@@ -97,6 +97,7 @@ namespace MoroskoWebsite.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.aspnetusersId = new SelectList(db.UserCourses, "Id", "aspnetusersId");
             return View(final);
         }
 
@@ -105,7 +106,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,finalname,finalgrade")] Final final)
+        public ActionResult Edit([Bind(Include = "Id,finalname,finalgrade,aspnetusersId")] Final final)
         {
             if (ModelState.IsValid)
             {
@@ -113,6 +114,7 @@ namespace MoroskoWebsite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.aspnetusersId = new SelectList(db.UserCourses, "Id", "aspnetusersId");
             return View(final);
         }
 
