@@ -19,13 +19,13 @@ namespace MoroskoWebsite.Models
         {
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
-            this.UserCourses = new HashSet<UserCourse>();
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.AdvCPPs = new HashSet<AdvCPP>();
             this.AdvVBs = new HashSet<AdvVB>();
             this.AspNetRoles1 = new HashSet<AspNetRole>();
             this.AdvVBStudents = new HashSet<AdvVBStudent>();
             this.AdvCPPStudents = new HashSet<AdvCPPStudent>();
+            this.UserCourses = new HashSet<UserCourse>();
         }
     
         public string Id { get; set; }
@@ -47,8 +47,6 @@ namespace MoroskoWebsite.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserCourse> UserCourses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdvCPP> AdvCPPs { get; set; }
@@ -61,5 +59,7 @@ namespace MoroskoWebsite.Models
         public virtual ICollection<AdvVBStudent> AdvVBStudents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdvCPPStudent> AdvCPPStudents { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserCourse> UserCourses { get; set; }
     }
 }

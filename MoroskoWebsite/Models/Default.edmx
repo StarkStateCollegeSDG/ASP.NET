@@ -121,16 +121,28 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="finalname" Type="varchar" MaxLength="100" />
           <Property Name="finalgrade" Type="varchar" MaxLength="10" />
+          <Property Name="usercourseId" Type="int" />
         </EntityType>
         <EntityType Name="UserCourse">
           <Key>
-            <PropertyRef Name="aspnetusersId" />
-            <PropertyRef Name="courseId" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="aspnetusersId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="courseId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Final__usercours__4AD81681">
+          <End Role="UserCourse" Type="Self.UserCourse" Multiplicity="0..1" />
+          <End Role="Final" Type="Self.Final" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCourse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Final">
+              <PropertyRef Name="usercourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_aspnetusersId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="UserCourse" Type="Self.UserCourse" Multiplicity="*" />
@@ -311,6 +323,10 @@
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Final" EntityType="Self.Final" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserCourse" EntityType="Self.UserCourse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Final__usercours__4AD81681" Association="Self.FK__Final__usercours__4AD81681">
+            <End Role="UserCourse" EntitySet="UserCourse" />
+            <End Role="Final" EntitySet="Final" />
+          </AssociationSet>
           <AssociationSet Name="FK_aspnetusersId" Association="Self.FK_aspnetusersId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="UserCourse" EntitySet="UserCourse" />
@@ -453,7 +469,6 @@
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="UserCourses" Relationship="Self.FK_aspnetusersId" FromRole="AspNetUsers" ToRole="UserCourse" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
           <NavigationProperty Name="AdvCPPs" Relationship="Model.FK_dbo_AdvCPP_dbo_AspNetUsers_AspNetUser_Id" FromRole="AspNetUser" ToRole="AdvCPP" />
           <NavigationProperty Name="AdvVBs" Relationship="Model.FK_dbo_AdvVBs_dbo_AspNetUsers_AspNetUser_Id" FromRole="AspNetUser" ToRole="AdvVB" />
@@ -462,6 +477,7 @@
           <NavigationProperty Name="AspNetRole" Relationship="Model.FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="AdvVBStudents" Relationship="Model.FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId" FromRole="AspNetUser" ToRole="AdvVBStudent" />
           <NavigationProperty Name="AdvCPPStudents" Relationship="Model.FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId" FromRole="AspNetUser" ToRole="AdvCPPStudent" />
+          <NavigationProperty Name="UserCourses" Relationship="Model.FK_aspnetusersId" FromRole="AspNetUser" ToRole="UserCourse" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -471,28 +487,8 @@
           <Property Name="coursename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="coursegrade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="finalId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UserCourses" Relationship="Self.FK_courseId" FromRole="Course" ToRole="UserCourse" />
-          <NavigationProperty Name="Final" Relationship="Self.FK_finalId" FromRole="Course" ToRole="Final" />
-        </EntityType>
-        <EntityType Name="Final">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="finalname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="finalgrade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Courses" Relationship="Self.FK_finalId" FromRole="Final" ToRole="Course" />
-        </EntityType>
-        <EntityType Name="UserCourse">
-          <Key>
-            <PropertyRef Name="aspnetusersId" />
-            <PropertyRef Name="courseId" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="aspnetusersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="courseId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_aspnetusersId" FromRole="UserCourse" ToRole="AspNetUsers" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_courseId" FromRole="UserCourse" ToRole="Course" />
+          <NavigationProperty Name="UserCourses" Relationship="Model.FK_courseId" FromRole="Course" ToRole="UserCourse" />
+          <NavigationProperty Name="Final" Relationship="Model.FK_finalId" FromRole="Course" ToRole="Final" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -522,42 +518,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_aspnetusersId">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-          <End Role="UserCourse" Type="Self.UserCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserCourse">
-              <PropertyRef Name="aspnetusersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_courseId">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="UserCourse" Type="Self.UserCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Course">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserCourse">
-              <PropertyRef Name="courseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_finalId">
-          <End Role="Final" Type="Self.Final" Multiplicity="1" />
-          <End Role="Course" Type="Self.Course" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Final">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Course">
-              <PropertyRef Name="finalId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AspNetUserRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
@@ -571,8 +531,6 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="Courses" EntityType="Self.Course" />
-          <EntitySet Name="Finals" EntityType="Self.Final" />
-          <EntitySet Name="UserCourses" EntityType="Self.UserCourse" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -580,18 +538,6 @@
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_aspnetusersId" Association="Self.FK_aspnetusersId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="UserCourse" EntitySet="UserCourses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_courseId" Association="Self.FK_courseId">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="UserCourse" EntitySet="UserCourses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_finalId" Association="Self.FK_finalId">
-            <End Role="Final" EntitySet="Finals" />
-            <End Role="Course" EntitySet="Courses" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -630,6 +576,24 @@
           <AssociationSet Name="FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId" Association="Model.FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AdvCPPStudent" EntitySet="AdvCPPStudents" />
+          </AssociationSet>
+          <EntitySet Name="Finals" EntityType="Model.Final" />
+          <EntitySet Name="UserCourses" EntityType="Model.UserCourse" />
+          <AssociationSet Name="FK_aspnetusersId" Association="Model.FK_aspnetusersId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="UserCourse" EntitySet="UserCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_courseId" Association="Model.FK_courseId">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="UserCourse" EntitySet="UserCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_finalId" Association="Model.FK_finalId">
+            <End Role="Final" EntitySet="Finals" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Final__usercours__4AD81681" Association="Model.FK__Final__usercours__4AD81681">
+            <End Role="UserCourse" EntitySet="UserCourses" />
+            <End Role="Final" EntitySet="Finals" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_dbo_AdvCPP_dbo_AspNetUsers_AspNetUser_Id">
@@ -750,6 +714,76 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Final">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="finalname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="finalgrade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="usercourseId" Type="Int32" />
+          <NavigationProperty Name="Courses" Relationship="Model.FK_finalId" FromRole="Final" ToRole="Course" />
+          <NavigationProperty Name="UserCourse" Relationship="Model.FK__Final__usercours__4AD81681" FromRole="Final" ToRole="UserCourse" />
+        </EntityType>
+        <EntityType Name="UserCourse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aspnetusersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="courseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_aspnetusersId" FromRole="UserCourse" ToRole="AspNetUser" />
+          <NavigationProperty Name="Course" Relationship="Model.FK_courseId" FromRole="UserCourse" ToRole="Course" />
+          <NavigationProperty Name="Finals" Relationship="Model.FK__Final__usercours__4AD81681" FromRole="UserCourse" ToRole="Final" />
+        </EntityType>
+        <Association Name="FK_aspnetusersId">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="Model.UserCourse" Role="UserCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCourse">
+              <PropertyRef Name="aspnetusersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_courseId">
+          <End Type="Model.Course" Role="Course" Multiplicity="1" />
+          <End Type="Model.UserCourse" Role="UserCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCourse">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_finalId">
+          <End Type="Model.Final" Role="Final" Multiplicity="1" />
+          <End Type="Model.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Final">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="finalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Final__usercours__4AD81681">
+          <End Type="Model.UserCourse" Role="UserCourse" Multiplicity="0..1" />
+          <End Type="Model.Final" Role="Final" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCourse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Final">
+              <PropertyRef Name="usercourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -846,24 +880,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Finals">
-            <EntityTypeMapping TypeName="Model.Final">
-              <MappingFragment StoreEntitySet="Final">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="finalname" ColumnName="finalname" />
-                <ScalarProperty Name="finalgrade" ColumnName="finalgrade" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserCourses">
-            <EntityTypeMapping TypeName="Model.UserCourse">
-              <MappingFragment StoreEntitySet="UserCourse">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="aspnetusersId" ColumnName="aspnetusersId" />
-                <ScalarProperty Name="courseId" ColumnName="courseId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -886,6 +902,25 @@
               <MappingFragment StoreEntitySet="AdvCPPStudents">
                 <ScalarProperty Name="advcppId" ColumnName="advcppId" />
                 <ScalarProperty Name="aspnetuserId" ColumnName="aspnetuserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Finals">
+            <EntityTypeMapping TypeName="Model.Final">
+              <MappingFragment StoreEntitySet="Final">
+                <ScalarProperty Name="usercourseId" ColumnName="usercourseId" />
+                <ScalarProperty Name="finalgrade" ColumnName="finalgrade" />
+                <ScalarProperty Name="finalname" ColumnName="finalname" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCourses">
+            <EntityTypeMapping TypeName="Model.UserCourse">
+              <MappingFragment StoreEntitySet="UserCourse">
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
+                <ScalarProperty Name="aspnetusersId" ColumnName="aspnetusersId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

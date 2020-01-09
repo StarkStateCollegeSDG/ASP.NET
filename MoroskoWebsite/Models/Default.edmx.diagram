@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="164af690caa946d39fa186f883082dc1" Name="Diagram1" ZoomLevel="121">
+      <Diagram DiagramId="164af690caa946d39fa186f883082dc1" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AdvCPP" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AdvVB" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
@@ -13,13 +13,8 @@
         <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="6" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Final" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.UserCourse" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_aspnetusersId" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_courseId" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_finalId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_AdvCPP_dbo_AspNetUsers_AspNetUser_Id" />
         <AssociationConnector Association="Model.FK_dbo_AdvVBs_dbo_AspNetUsers_AspNetUser_Id" />
@@ -31,6 +26,12 @@
         <EntityTypeShape EntityType="Model.AdvCPPStudent" Width="1.5" PointX="8.25" PointY="10.5" />
         <AssociationConnector Association="Model.FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId" />
         <AssociationConnector Association="Model.FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId" />
+        <EntityTypeShape EntityType="Model.Final" Width="1.5" PointX="10.5" PointY="1.375" />
+        <EntityTypeShape EntityType="Model.UserCourse" Width="1.5" PointX="8.25" PointY="3.375" />
+        <AssociationConnector Association="Model.FK_aspnetusersId" />
+        <AssociationConnector Association="Model.FK_courseId" />
+        <AssociationConnector Association="Model.FK_finalId" />
+        <AssociationConnector Association="Model.FK__Final__usercours__4AD81681" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
