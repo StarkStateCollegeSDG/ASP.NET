@@ -11,7 +11,8 @@ namespace MoroskoWebsite.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Final
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,9 @@ namespace MoroskoWebsite.Models
         }
     
         public int Id { get; set; }
+        [Display(Name = "Final")]
         public string finalname { get; set; }
+        [Display(Name = "Description")]
         public string finaldescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

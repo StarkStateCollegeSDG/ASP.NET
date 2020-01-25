@@ -11,14 +11,18 @@ namespace MoroskoWebsite.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class UserCourse
     {
         public int Id { get; set; }
         public string aspnetusersId { get; set; }
+        [Display(Name = "Class")]
         public int courseId { get; set; }
         public Nullable<int> finalId { get; set; }
+        [Display(Name = "Class Grade")]
         public string coursegrade { get; set; }
+        [Display(Name = "Final Grade")]
         public string finalgrade { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }

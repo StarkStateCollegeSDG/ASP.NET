@@ -11,14 +11,19 @@ namespace MoroskoWebsite.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class AdvCPP
     {
         public int Id { get; set; }
+        [Display(Name = "Project")]
         public string projectname { get; set; }
+        [Display(Name = "Description")]
         public string description { get; set; }
+        [Display(Name = "Stduent")]
         public string studentname { get; set; }
         public string AspNetUser_Id { get; set; }
+        [Display(Name = "Project")]
         public string grade { get; set; }
     }
 }
