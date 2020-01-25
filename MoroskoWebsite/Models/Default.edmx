@@ -16,14 +16,6 @@
           <Property Name="AspNetUser_Id" Type="nvarchar(max)" />
           <Property Name="grade" Type="varchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="AdvCPPStudents">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="aspnetuserId" Type="nvarchar" MaxLength="128" />
-          <Property Name="advcppId" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="AdvVBs">
           <Key>
             <PropertyRef Name="Id" />
@@ -34,22 +26,6 @@
           <Property Name="studentname" Type="varchar" MaxLength="100" />
           <Property Name="AspNetUser_Id" Type="nvarchar(max)" />
           <Property Name="grade" Type="varchar" MaxLength="10" />
-        </EntityType>
-        <EntityType Name="AdvVBStudents">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="aspnetuserId" Type="nvarchar" MaxLength="128" />
-          <Property Name="advvbId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetRoleAspNetUsers">
-          <Key>
-            <PropertyRef Name="AspNetRole_Id" />
-            <PropertyRef Name="AspNetUser_Id" />
-          </Key>
-          <Property Name="AspNetRole_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="AspNetUser_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -78,14 +54,6 @@
           <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUserRoles">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetUsers">
           <Key>
@@ -156,56 +124,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId">
-          <End Role="AdvCPP" Type="Self.AdvCPP" Multiplicity="1" />
-          <End Role="AdvCPPStudents" Type="Self.AdvCPPStudents" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AdvCPP">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AdvCPPStudents">
-              <PropertyRef Name="advcppId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
-          <End Role="AdvCPPStudents" Type="Self.AdvCPPStudents" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AdvCPPStudents">
-              <PropertyRef Name="aspnetuserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId">
-          <End Role="AdvVBs" Type="Self.AdvVBs" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AdvVBStudents" Type="Self.AdvVBStudents" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AdvVBs">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AdvVBStudents">
-              <PropertyRef Name="advvbId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
-          <End Role="AdvVBStudents" Type="Self.AdvVBStudents" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AdvVBStudents">
-              <PropertyRef Name="aspnetuserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
@@ -246,34 +164,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetRoles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="0..1" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
@@ -300,14 +190,10 @@
         </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="AdvCPP" EntityType="Self.AdvCPP" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AdvCPPStudents" EntityType="Self.AdvCPPStudents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdvVBs" EntityType="Self.AdvVBs" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AdvVBStudents" EntityType="Self.AdvVBStudents" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetRoleAspNetUsers" EntityType="Self.AspNetRoleAspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Final" EntityType="Self.Final" Schema="dbo" store:Type="Tables" />
@@ -320,22 +206,6 @@
             <End Role="Course" EntitySet="Course" />
             <End Role="UserCourse" EntitySet="UserCourse" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId" Association="Self.FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId">
-            <End Role="AdvCPP" EntitySet="AdvCPP" />
-            <End Role="AdvCPPStudents" EntitySet="AdvCPPStudents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId" Association="Self.FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AdvCPPStudents" EntitySet="AdvCPPStudents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId" Association="Self.FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId">
-            <End Role="AdvVBs" EntitySet="AdvVBs" />
-            <End Role="AdvVBStudents" EntitySet="AdvVBStudents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId" Association="Self.FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AdvVBStudents" EntitySet="AdvVBStudents" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId" Association="Self.FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -347,14 +217,6 @@
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id" Association="Self.FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -370,44 +232,31 @@
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="EntitiesDBConn" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AdvCPPStudents" EntityType="Model.AdvCPPStudent" />
-          <EntitySet Name="AdvVBStudents" EntityType="Model.AdvVBStudent" />
-          <EntitySet Name="AspNetRoleAspNetUsers" EntityType="Model.AspNetRoleAspNetUser" />
+          <EntitySet Name="AdvCPPs" EntityType="Model.AdvCPP" />
+          <EntitySet Name="AdvVBs" EntityType="Model.AdvVB" />
           <EntitySet Name="AspNetRoles" EntityType="Model.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Model.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Model.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Model.AspNetUser" />
-          <AssociationSet Name="FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId" Association="Model.FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId">
-            <End EntitySet="AspNetUsers" Role="AspNetUser" />
-            <End EntitySet="AdvCPPStudents" Role="AdvCPPStudent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId" Association="Model.FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId">
-            <End EntitySet="AspNetUsers" Role="AspNetUser" />
-            <End EntitySet="AdvVBStudents" Role="AdvVBStudent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId" Association="Model.FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId">
-            <End EntitySet="AspNetUsers" Role="AspNetUser" />
-            <End EntitySet="AspNetRoles" Role="AspNetRole" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id" Association="Model.FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id">
-            <End EntitySet="AspNetRoles" Role="AspNetRole" />
-            <End EntitySet="AspNetUsers" Role="AspNetUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End EntitySet="AspNetUsers" Role="AspNetUser" />
-            <End EntitySet="AspNetUserClaims" Role="AspNetUserClaim" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End EntitySet="AspNetUsers" Role="AspNetUser" />
-            <End EntitySet="AspNetUserLogins" Role="AspNetUserLogin" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="Model.AspNetUserRoles">
-            <End EntitySet="AspNetRoles" Role="AspNetRole" />
-            <End EntitySet="AspNetUsers" Role="AspNetUser" />
-          </AssociationSet>
           <EntitySet Name="Courses" EntityType="Model.Course" />
           <EntitySet Name="Finals" EntityType="Model.Final" />
           <EntitySet Name="UserCourses" EntityType="Model.UserCourse" />
+          <AssociationSet Name="FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId" Association="Model.FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id" Association="Model.FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
           <AssociationSet Name="FK_aspnetusersId" Association="Model.FK_aspnetusersId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="UserCourse" EntitySet="UserCourses" />
@@ -420,64 +269,47 @@
             <End Role="Final" EntitySet="Finals" />
             <End Role="UserCourse" EntitySet="UserCourses" />
           </AssociationSet>
-          <EntitySet Name="AdvCPPs" EntityType="Model.AdvCPP" />
-          <EntitySet Name="AdvVBs" EntityType="Model.AdvVB" />
-          <AssociationSet Name="FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId" Association="Model.FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId">
-            <End Role="AdvCPP" EntitySet="AdvCPPs" />
-            <End Role="AdvCPPStudent" EntitySet="AdvCPPStudents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId" Association="Model.FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId">
-            <End Role="AdvVB" EntitySet="AdvVBs" />
-            <End Role="AdvVBStudent" EntitySet="AdvVBStudents" />
-          </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="AdvCPPStudent">
+        </EntityContainer>
+        <EntityType Name="AdvCPP">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="aspnetuserId" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="advcppId" Nullable="false" Type="Int32" />
-          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId" FromRole="AdvCPPStudent" ToRole="AspNetUser" />
-          <NavigationProperty Name="AdvCPP" Relationship="Model.FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId" FromRole="AdvCPPStudent" ToRole="AdvCPP" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="projectname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="studentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AspNetUser_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="grade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="AdvVBStudent">
+        <EntityType Name="AdvVB">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="aspnetuserId" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="advvbId" Nullable="false" Type="Int32" />
-          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId" FromRole="AdvVBStudent" ToRole="AspNetUser" />
-          <NavigationProperty Name="AdvVB" Relationship="Model.FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId" FromRole="AdvVBStudent" ToRole="AdvVB" />
-        </EntityType>
-        <EntityType Name="AspNetRoleAspNetUser">
-          <Key>
-            <PropertyRef Name="AspNetRole_Id" />
-            <PropertyRef Name="AspNetUser_Id" />
-          </Key>
-          <Property Name="AspNetRole_Id" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="AspNetUser_Id" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="projectname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="studentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AspNetUser_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="grade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="Name" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="AspNetUserId" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="AspNetUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId" FromRole="AspNetRole" ToRole="AspNetUser" />
           <NavigationProperty Name="AspNetUsers" Relationship="Model.FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id" FromRole="AspNetRole" ToRole="AspNetUser" />
-          <NavigationProperty Name="AspNetUsers1" Relationship="Model.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUserClaim">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="UserId" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ClaimType" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ClaimValue" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUserLogin">
@@ -486,125 +318,42 @@
             <PropertyRef Name="ProviderKey" />
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="LoginProvider" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ProviderKey" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="UserId" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="Id" Nullable="false" Type="Int32" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="Email" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="EmailConfirmed" Nullable="false" Type="Boolean" />
-          <Property Name="PasswordHash" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="SecurityStamp" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="PhoneNumber" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="PhoneNumberConfirmed" Nullable="false" Type="Boolean" />
-          <Property Name="TwoFactorEnabled" Nullable="false" Type="Boolean" />
-          <Property Name="LockoutEndDateUtc" Precision="3" Type="DateTime" />
-          <Property Name="LockoutEnabled" Nullable="false" Type="Boolean" />
-          <Property Name="AccessFailedCount" Nullable="false" Type="Int32" />
-          <Property Name="UserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="AspNetRole_Id" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <NavigationProperty Name="AdvCPPStudents" Relationship="Model.FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId" FromRole="AspNetUser" ToRole="AdvCPPStudent" />
-          <NavigationProperty Name="AdvVBStudents" Relationship="Model.FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId" FromRole="AspNetUser" ToRole="AdvVBStudent" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="AspNetRole_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetRoles" Relationship="Model.FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="AspNetRole" Relationship="Model.FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-          <NavigationProperty Name="AspNetRoles1" Relationship="Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="UserCourses" Relationship="Model.FK_aspnetusersId" FromRole="AspNetUser" ToRole="UserCourse" />
         </EntityType>
-        <Association Name="FK_dbo_AdvCPPStudents_dbo_AspNetUsers_aspnetuserId">
-          <End Type="Model.AspNetUser" Multiplicity="0..1" Role="AspNetUser" />
-          <End Type="Model.AdvCPPStudent" Multiplicity="*" Role="AdvCPPStudent" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AdvCPPStudent">
-              <PropertyRef Name="aspnetuserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AdvVBStudents_dbo_AspNetUsers_aspnetuserId">
-          <End Type="Model.AspNetUser" Multiplicity="0..1" Role="AspNetUser" />
-          <End Type="Model.AdvVBStudent" Multiplicity="*" Role="AdvVBStudent" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AdvVBStudent">
-              <PropertyRef Name="aspnetuserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId">
-          <End Type="Model.AspNetUser" Multiplicity="0..1" Role="AspNetUser" />
-          <End Type="Model.AspNetRole" Multiplicity="*" Role="AspNetRole" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetRole">
-              <PropertyRef Name="AspNetUserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id">
-          <End Type="Model.AspNetRole" Multiplicity="0..1" Role="AspNetRole" />
-          <End Type="Model.AspNetUser" Multiplicity="*" Role="AspNetUser" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetRole">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUser">
-              <PropertyRef Name="AspNetRole_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Type="Model.AspNetUser" Multiplicity="1" Role="AspNetUser">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.AspNetUserClaim" Multiplicity="*" Role="AspNetUserClaim" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaim">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Type="Model.AspNetUser" Multiplicity="1" Role="AspNetUser">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.AspNetUserLogin" Multiplicity="*" Role="AspNetUserLogin" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogin">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AspNetUserRoles">
-          <End Type="Model.AspNetRole" Multiplicity="*" Role="AspNetRole" />
-          <End Type="Model.AspNetUser" Multiplicity="*" Role="AspNetUser" />
-        </Association>
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="coursename" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
-          <Property Name="coursedescription" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="coursedescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="UserCourses" Relationship="Model.FK_courseId" FromRole="Course" ToRole="UserCourse" />
         </EntityType>
         <EntityType Name="Final">
@@ -630,6 +379,58 @@
           <NavigationProperty Name="Course" Relationship="Model.FK_courseId" FromRole="UserCourse" ToRole="Course" />
           <NavigationProperty Name="Final" Relationship="Model.FK_finalId" FromRole="UserCourse" ToRole="Final" />
         </EntityType>
+        <Association Name="FK_dbo_AspNetRoles_dbo_AspNetUsers_AspNetUserId">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetRole">
+              <PropertyRef Name="AspNetUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUsers_dbo_AspNetRoles_AspNetRole_Id">
+          <End Type="Model.AspNetRole" Role="AspNetRole" Multiplicity="0..1" />
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="AspNetRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_aspnetusersId">
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
           <End Type="Model.UserCourse" Role="UserCourse" Multiplicity="*" />
@@ -666,85 +467,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AdvCPP">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="projectname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="studentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="AspNetUser_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="grade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AdvCPPStudents" Relationship="Model.FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId" FromRole="AdvCPP" ToRole="AdvCPPStudent" />
-        </EntityType>
-        <EntityType Name="AdvVB">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="projectname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="studentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="AspNetUser_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="grade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AdvVBStudents" Relationship="Model.FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId" FromRole="AdvVB" ToRole="AdvVBStudent" />
-        </EntityType>
-        <Association Name="FK_dbo_AdvCPPStudents_dbo_AdvCPP_advcppId">
-          <End Type="Model.AdvCPP" Role="AdvCPP" Multiplicity="1" />
-          <End Type="Model.AdvCPPStudent" Role="AdvCPPStudent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AdvCPP">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AdvCPPStudent">
-              <PropertyRef Name="advcppId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AdvVBStudents_dbo_AdvVBs_advvbId">
-          <End Type="Model.AdvVB" Role="AdvVB" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.AdvVBStudent" Role="AdvVBStudent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AdvVB">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AdvVBStudent">
-              <PropertyRef Name="advvbId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="EntitiesDBConn">
-          <EntitySetMapping Name="AdvCPPStudents">
-            <EntityTypeMapping TypeName="Model.AdvCPPStudent">
-              <MappingFragment StoreEntitySet="AdvCPPStudents">
-                <ScalarProperty Name="advcppId" ColumnName="advcppId" />
-                <ScalarProperty Name="aspnetuserId" ColumnName="aspnetuserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AdvVBStudents">
-            <EntityTypeMapping TypeName="Model.AdvVBStudent">
-              <MappingFragment StoreEntitySet="AdvVBStudents">
-                <ScalarProperty Name="advvbId" ColumnName="advvbId" />
-                <ScalarProperty Name="aspnetuserId" ColumnName="aspnetuserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetRoleAspNetUsers">
-            <EntityTypeMapping TypeName="Model.AspNetRoleAspNetUser">
-              <MappingFragment StoreEntitySet="AspNetRoleAspNetUsers">
+          <EntitySetMapping Name="AdvCPPs">
+            <EntityTypeMapping TypeName="Model.AdvCPP">
+              <MappingFragment StoreEntitySet="AdvCPP">
+                <ScalarProperty Name="grade" ColumnName="grade" />
                 <ScalarProperty Name="AspNetUser_Id" ColumnName="AspNetUser_Id" />
-                <ScalarProperty Name="AspNetRole_Id" ColumnName="AspNetRole_Id" />
+                <ScalarProperty Name="studentname" ColumnName="studentname" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="projectname" ColumnName="projectname" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvVBs">
+            <EntityTypeMapping TypeName="Model.AdvVB">
+              <MappingFragment StoreEntitySet="AdvVBs">
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="AspNetUser_Id" ColumnName="AspNetUser_Id" />
+                <ScalarProperty Name="studentname" ColumnName="studentname" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="projectname" ColumnName="projectname" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -796,14 +545,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUser">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="AspNetRole">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="Model.Course">
               <MappingFragment StoreEntitySet="Course">
@@ -830,30 +571,6 @@
                 <ScalarProperty Name="finalId" ColumnName="finalId" />
                 <ScalarProperty Name="courseId" ColumnName="courseId" />
                 <ScalarProperty Name="aspnetusersId" ColumnName="aspnetusersId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AdvCPPs">
-            <EntityTypeMapping TypeName="Model.AdvCPP">
-              <MappingFragment StoreEntitySet="AdvCPP">
-                <ScalarProperty Name="grade" ColumnName="grade" />
-                <ScalarProperty Name="AspNetUser_Id" ColumnName="AspNetUser_Id" />
-                <ScalarProperty Name="studentname" ColumnName="studentname" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="projectname" ColumnName="projectname" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AdvVBs">
-            <EntityTypeMapping TypeName="Model.AdvVB">
-              <MappingFragment StoreEntitySet="AdvVBs">
-                <ScalarProperty Name="grade" ColumnName="grade" />
-                <ScalarProperty Name="AspNetUser_Id" ColumnName="AspNetUser_Id" />
-                <ScalarProperty Name="studentname" ColumnName="studentname" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="projectname" ColumnName="projectname" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

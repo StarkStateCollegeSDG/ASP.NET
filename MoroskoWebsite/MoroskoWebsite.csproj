@@ -272,24 +272,19 @@
     <Compile Include="Migrations\202001221832133_changes21.designer.cs">
       <DependentUpon>202001221832133_changes21.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001252303081_changes22.cs" />
+    <Compile Include="Migrations\202001252303081_changes22.designer.cs">
+      <DependentUpon>202001252303081_changes22.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdvCPP.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AdvCPPStudent.cs">
-      <DependentUpon>Default.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AdvVB.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AdvVBStudent.cs">
-      <DependentUpon>Default.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AspNetRole.cs">
-      <DependentUpon>Default.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetRoleAspNetUser.cs">
       <DependentUpon>Default.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUser.cs">
@@ -517,6 +512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001221832133_changes21.resx">
       <DependentUpon>202001221832133_changes21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001252303081_changes22.resx">
+      <DependentUpon>202001252303081_changes22.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -14,20 +14,11 @@ namespace MoroskoWebsite.Models
     
     public partial class AdvVB
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AdvVB()
-        {
-            this.AdvVBStudents = new HashSet<AdvVBStudent>();
-        }
-    
         public int Id { get; set; }
         public string projectname { get; set; }
         public string description { get; set; }
         public string studentname { get; set; }
         public string AspNetUser_Id { get; set; }
         public string grade { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AdvVBStudent> AdvVBStudents { get; set; }
     }
 }
