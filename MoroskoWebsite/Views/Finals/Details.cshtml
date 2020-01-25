@@ -19,26 +19,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.finalgrade)
+            @Html.DisplayNameFor(model => model.finaldescription)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.finalgrade)
+            @Html.DisplayFor(model => model.finaldescription)
         </dd>
 
     </dl>
 </div>
-
-@if (User.IsInRole("Admin"))
-{
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
-else
-{
-    <p>
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

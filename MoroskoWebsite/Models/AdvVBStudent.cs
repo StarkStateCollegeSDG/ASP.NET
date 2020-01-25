@@ -18,7 +18,7 @@ namespace MoroskoWebsite.Models
         public string aspnetuserId { get; set; }
         public int advvbId { get; set; }
     
-        public virtual AdvVB AdvVB { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
+        public virtual AdvVB AdvVB { get; set; }
     }
 }

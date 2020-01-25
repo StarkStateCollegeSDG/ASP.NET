@@ -23,10 +23,7 @@
             @Html.DisplayNameFor(model => model.coursename)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.coursegrade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Final.finalname)
+            @Html.DisplayNameFor(model => model.coursedescription)
         </th>
         <th></th>
     </tr>
@@ -38,10 +35,7 @@
                 @Html.ActionLink(item.coursename, "RouteToClass", "Courses", new { classId = item.Id }, null)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.coursegrade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Final.finalname)
+                @Html.DisplayFor(modelItem => item.coursedescription)
             </td>
 
             @if (User.IsInRole("Admin"))

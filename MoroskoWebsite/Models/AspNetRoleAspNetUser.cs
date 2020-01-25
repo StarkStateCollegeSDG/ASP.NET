@@ -12,11 +12,9 @@ namespace MoroskoWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class C__MigrationHistory
+    public partial class AspNetRoleAspNetUser
     {
-        public string MigrationId { get; set; }
-        public string ContextKey { get; set; }
-        public byte[] Model { get; set; }
-        public string ProductVersion { get; set; }
+        public string AspNetRole_Id { get; set; }
+        public string AspNetUser_Id { get; set; }
     }
 }

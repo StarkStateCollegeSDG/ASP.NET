@@ -22,11 +22,9 @@ namespace MoroskoWebsite.Models
     
         public int Id { get; set; }
         public string coursename { get; set; }
-        public string coursegrade { get; set; }
-        public int finalId { get; set; }
+        public string coursedescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserCourse> UserCourses { get; set; }
-        public virtual Final Final { get; set; }
     }
 }

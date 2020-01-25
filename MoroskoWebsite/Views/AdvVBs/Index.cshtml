@@ -5,6 +5,8 @@
 }
 
 <h2>Index</h2>
+<h5>Overall Grade: @ViewBag.AdvVBCourseGrade</h5>
+<h5>Final Grade: @ViewBag.AdvVBFinalGrade</h5>
 
 @if (User.IsInRole("Admin"))
 {
@@ -13,49 +15,62 @@
     </p>
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.projectname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.studentname)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+@if (!ViewBag.DisplayAdvVB)
+{
+    <h2>Your are not currently enrolled in this class. Please see your advisor.</h2>
+}
+else
+{
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.projectname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.studentname)
-            </td>
-
-            @if (User.IsInRole("Admin"))
-            {
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            }
-            else
-            {
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                </td>
-            }
-
+            <th>
+                @Html.DisplayNameFor(model => model.projectname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.studentname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grade)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.projectname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.studentname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.grade)
+                </td>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    </td>
+                }
+
+            </tr>
+        }
+
+    </table>
+}

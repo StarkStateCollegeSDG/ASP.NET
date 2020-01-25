@@ -26,18 +26,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.coursegrade, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.coursedescription, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.coursegrade, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.coursegrade, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.finalId, "finalId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("finalId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.finalId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.coursedescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.coursedescription, "", new { @class = "text-danger" })
             </div>
         </div>
 

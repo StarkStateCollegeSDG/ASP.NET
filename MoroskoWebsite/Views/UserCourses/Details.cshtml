@@ -11,14 +11,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.AspNetUser.Email)
         </dt>
 
@@ -34,9 +26,33 @@
             @Html.DisplayFor(model => model.Course.coursename)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Final.finalname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Final.finalname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.coursegrade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.coursegrade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.finalgrade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.finalgrade)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin;
+using MoroskoWebsite.Controllers;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(MoroskoWebsite.Startup))]

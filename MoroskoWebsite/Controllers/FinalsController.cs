@@ -10,7 +10,6 @@ using MoroskoWebsite.Models;
 
 namespace MoroskoWebsite.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class FinalsController : Controller
     {
         private EntitiesDBConn db = new EntitiesDBConn();
@@ -33,29 +32,12 @@ namespace MoroskoWebsite.Controllers
             {
                 return HttpNotFound();
             }
-            #region comment for ViewBag.AspNetUser_Id
-            //This view bag needs to be named exactly AspNetUser_Id to match the foreign
-            //key in the table. This is for a drop down list that will assign the Id
-            //from the AspNetUsers table to the data row being created/edited, 
-            //however we will display the email and not the actual Id when using 
-            //the drop down.
-            #endregion
-            ViewBag.aspnetusersId = new SelectList(db.UserCourses, "Id", "aspnetusersId");
             return View(final);
         }
 
-        [Authorize(Roles = "Admin")]
         // GET: Finals/Create
         public ActionResult Create()
         {
-            #region comment for ViewBag.AspNetUser_Id
-            //This view bag needs to be named exactly AspNetUser_Id to match the foreign
-            //key in the table. This is for a drop down list that will assign the Id
-            //from the AspNetUsers table to the data row being created/edited, 
-            //however we will display the email and not the actual Id when using 
-            //the drop down.
-            #endregion
-            ViewBag.aspnetusersId = new SelectList(db.UserCourses, "Id", "aspnetusersId");
             return View();
         }
 
@@ -64,7 +46,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,finalname,finalgrade,aspnetusersId")] Final final)
+        public ActionResult Create([Bind(Include = "Id,finalname,finaldescription")] Final final)
         {
             if (ModelState.IsValid)
             {
@@ -72,19 +54,10 @@ namespace MoroskoWebsite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            #region comment for ViewBag.AspNetUser_Id
-            //This view bag needs to be named exactly AspNetUser_Id to match the foreign
-            //key in the table. This is for a drop down list that will assign the Id
-            //from the AspNetUsers table to the data row being created/edited, 
-            //however we will display the email and not the actual Id when using 
-            //the drop down.
-            #endregion
-            ViewBag.aspnetusersId = new SelectList(db.UserCourses, "Id", "aspnetusersId");
 
             return View(final);
         }
 
-        [Authorize(Roles = "Admin")]
         // GET: Finals/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -97,7 +70,6 @@ namespace MoroskoWebsite.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.aspnetusersId = new SelectList(db.UserCourses, "Id", "aspnetusersId");
             return View(final);
         }
 
@@ -106,7 +78,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,finalname,finalgrade,aspnetusersId")] Final final)
+        public ActionResult Edit([Bind(Include = "Id,finalname,finaldescription")] Final final)
         {
             if (ModelState.IsValid)
             {
@@ -114,11 +86,9 @@ namespace MoroskoWebsite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.aspnetusersId = new SelectList(db.UserCourses, "Id", "aspnetusersId");
             return View(final);
         }
 
-        [Authorize(Roles = "Admin")]
         // GET: Finals/Delete/5
         public ActionResult Delete(int? id)
         {

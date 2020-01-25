@@ -10,7 +10,6 @@ using MoroskoWebsite.Models;
 
 namespace MoroskoWebsite.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class UserCoursesController : Controller
     {
         private EntitiesDBConn db = new EntitiesDBConn();
@@ -18,12 +17,12 @@ namespace MoroskoWebsite.Controllers
         // GET: UserCourses
         public ActionResult Index()
         {
-            var userCourses = db.UserCourses.Include(u => u.AspNetUser).Include(u => u.Course);
+            var userCourses = db.UserCourses.Include(u => u.AspNetUser).Include(u => u.Course).Include(u => u.Final);
             return View(userCourses.ToList());
         }
 
         // GET: UserCourses/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -42,6 +41,7 @@ namespace MoroskoWebsite.Controllers
         {
             ViewBag.aspnetusersId = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.courseId = new SelectList(db.Courses, "Id", "coursename");
+            ViewBag.finalId = new SelectList(db.Finals, "Id", "finalname");
             return View();
         }
 
@@ -50,7 +50,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,aspnetusersId,courseId")] UserCourse userCourse)
+        public ActionResult Create([Bind(Include = "Id,aspnetusersId,courseId,finalId,coursegrade,finalgrade")] UserCourse userCourse)
         {
             if (ModelState.IsValid)
             {
@@ -61,11 +61,12 @@ namespace MoroskoWebsite.Controllers
 
             ViewBag.aspnetusersId = new SelectList(db.AspNetUsers, "Id", "Email", userCourse.aspnetusersId);
             ViewBag.courseId = new SelectList(db.Courses, "Id", "coursename", userCourse.courseId);
+            ViewBag.finalId = new SelectList(db.Finals, "Id", "finalname", userCourse.finalId);
             return View(userCourse);
         }
 
         // GET: UserCourses/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -78,6 +79,7 @@ namespace MoroskoWebsite.Controllers
             }
             ViewBag.aspnetusersId = new SelectList(db.AspNetUsers, "Id", "Email", userCourse.aspnetusersId);
             ViewBag.courseId = new SelectList(db.Courses, "Id", "coursename", userCourse.courseId);
+            ViewBag.finalId = new SelectList(db.Finals, "Id", "finalname", userCourse.finalId);
             return View(userCourse);
         }
 
@@ -86,7 +88,7 @@ namespace MoroskoWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,aspnetusersId,courseId")] UserCourse userCourse)
+        public ActionResult Edit([Bind(Include = "Id,aspnetusersId,courseId,finalId,coursegrade,finalgrade")] UserCourse userCourse)
         {
             if (ModelState.IsValid)
             {
@@ -96,11 +98,12 @@ namespace MoroskoWebsite.Controllers
             }
             ViewBag.aspnetusersId = new SelectList(db.AspNetUsers, "Id", "Email", userCourse.aspnetusersId);
             ViewBag.courseId = new SelectList(db.Courses, "Id", "coursename", userCourse.courseId);
+            ViewBag.finalId = new SelectList(db.Finals, "Id", "finalname", userCourse.finalId);
             return View(userCourse);
         }
 
         // GET: UserCourses/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -117,7 +120,7 @@ namespace MoroskoWebsite.Controllers
         // POST: UserCourses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             UserCourse userCourse = db.UserCourses.Find(id);
             db.UserCourses.Remove(userCourse);
