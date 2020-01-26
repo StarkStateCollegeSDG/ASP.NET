@@ -2,6 +2,18 @@
 
 @{
     ViewBag.Title = "Index";
+    //Prevents null ViewBag error.
+    if (ViewBag.AlertFinal == null)
+    {
+        ViewBag.AlertFinal = false;
+    }
+}
+
+@if (ViewBag.AlertFinal == true)
+{
+    <script>
+        alert("You must first delete the UserCourse referencing this final first.");
+    </script>
 }
 
 <h2>Index</h2>
@@ -20,20 +32,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.finalname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.finaldescription)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.finalname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.finaldescription)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

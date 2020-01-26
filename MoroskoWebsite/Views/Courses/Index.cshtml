@@ -2,6 +2,18 @@
 
 @{
     ViewBag.Title = "Index";
+    //Prevents null ViewBag error.
+    if (ViewBag.AlertCourse == null)
+    {
+        ViewBag.AlertCourse = false;
+    }
+}
+
+@if (ViewBag.AlertCourse == true)
+{
+    <script>
+        alert("You must first delete the UserCourse referencing this course first.");
+    </script>
 }
 
 <h2>Index</h2>

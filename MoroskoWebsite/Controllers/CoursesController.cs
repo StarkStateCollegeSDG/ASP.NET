@@ -19,6 +19,15 @@ namespace MoroskoWebsite.Controllers
         // GET: Courses
         public ActionResult Index()
         {
+            //TempData allows us to use values across sessions.
+            if (TempData["deleteCourse"] == null)
+            {
+                TempData["deleteCourse"] = false;
+            }
+            if ((bool)TempData["deleteCourse"])
+            {
+                ViewBag.AlertCourse = true;
+            }
             var userID = User.Identity.GetUserId();
             //This linq query gives us only the courses registered by the user.
             var courses = from c in db.Courses
@@ -151,9 +160,18 @@ namespace MoroskoWebsite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
-            db.SaveChanges();
+            try
+            {
+                Course course = db.Courses.Find(id);
+                db.Courses.Remove(course);
+                db.SaveChanges();
+            }
+            catch(Exception)
+            {
+                //Happens when admin deletes a course referenced in a usercourse.
+                //Must delete usercourse before deleting course.
+                TempData["deleteCourse"] = true;
+            }
             return RedirectToAction("Index");
         }
 

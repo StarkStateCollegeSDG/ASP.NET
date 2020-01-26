@@ -17,6 +17,15 @@ namespace MoroskoWebsite.Controllers
         // GET: Finals
         public ActionResult Index()
         {
+            //TempData allows us to use values across sessions.
+            if (TempData["deleteFinal"] == null)
+            {
+                TempData["deleteFinal"] = false;
+            }
+            if ((bool)TempData["deleteFinal"])
+            {
+                ViewBag.AlertFinal = true;
+            }
             return View(db.Finals.ToList());
         }
 
@@ -109,9 +118,18 @@ namespace MoroskoWebsite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Final final = db.Finals.Find(id);
-            db.Finals.Remove(final);
-            db.SaveChanges();
+            try
+            {
+                Final final = db.Finals.Find(id);
+                db.Finals.Remove(final);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                //Happens when admin deletes a final referenced in a usercourse.
+                //Must delete usercourse before deleting final.
+                TempData["deleteFinal"] = true;
+            }
             return RedirectToAction("Index");
         }
 
